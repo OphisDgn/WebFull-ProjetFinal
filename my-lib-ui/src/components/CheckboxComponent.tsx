@@ -1,14 +1,14 @@
+import { type } from "os";
 import React from "react";
 
-type Props = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & { label: string };
-
-const CheckboxComponent: React.FC<Props> = (props) => {
-  const { label } = props;
-
-  return <div></div>;
+const CheckboxComponent: React.FC = () => {
+  return (
+  <div>
+    <input type="checkbox" name="j'atteste que je possède un permis de conduire valide" className="my-lib-ui-input" />
+    <label>J'atteste que je possède un permis de conduire valide</label>
+  </div>
+  );
 };
+
 
 export default CheckboxComponent;

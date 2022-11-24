@@ -14,3 +14,8 @@ export default {
 export const ButtonComponentView: ComponentStory<typeof ButtonComponent> = (
   args
 ) => <ButtonComponent {...args}>Button</ButtonComponent>;
+
+ButtonComponentView.args = {
+  label: "Demander mon inscription",
+  type: "submit"
+}

@@ -11,10 +11,11 @@ export default {
   component: SelectComponent,
 } as ComponentMeta<typeof SelectComponent>;
 
-export const RadioButtonComponentView: ComponentStory<
+export const SelectComponentView: ComponentStory<
   typeof SelectComponent
 > = (args) => (
   <SelectComponent {...args}>
+    <option>Sélectionnez une valeur</option>
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>

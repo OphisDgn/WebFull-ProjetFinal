@@ -1,12 +1,17 @@
 import React from "react";
 
-type Props = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & { label: string };
+type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement> &
+  { label: string };
 
 const RadioButtonComponent: React.FC<Props> = (props) => {
-  return <div></div>;
+  const {label} = props;
+  return (
+    <div>
+      <input type="radio"/>
+      <label>{label}</label>
+    </div>
+  );
 };
 
 export default RadioButtonComponent;
