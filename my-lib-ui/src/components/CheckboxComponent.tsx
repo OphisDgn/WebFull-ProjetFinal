@@ -6,6 +6,8 @@ type Props = React.DetailedHTMLProps<
 > & { label: string };
 
 const CheckboxComponent: React.FC<Props> = (props) => {
+  const { label } = props;
+
   return <div></div>;
 };
 

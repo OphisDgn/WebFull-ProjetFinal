@@ -1,7 +1,11 @@
 import React from "react";
 
+export type ButtonComponentProps = {
+  
+};
+
 const ButtonComponent: React.FC = () => {
-  return <button></button>;
+  return <button>OK</button>;
 };
 
 export default ButtonComponent;
