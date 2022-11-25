@@ -1,22 +1,22 @@
-
+import { HeaderComponent, FooterComponent } from "my-lib-ui";
 import type { NextPage } from "next";
 
-import FooterComponent from "../components/FooterComponent";
-import FormComponent from "../components/FormComponent";
 import HeadComponent from "../components/HeadComponent";
-import HeaderComponent from "../components/HeaderComponent";
 import ImageHomeComponent from "../components/ImageHomeComponent";
+import FormComponent from "../components/FormComponent";
 
 const Home: NextPage = () => {
   return (
     <div>
       <HeadComponent />
-      <HeaderComponent />
+      <HeaderComponent url="/login"/>
       
       <main>
         <ImageHomeComponent/>
         <FormComponent formType="register"/>
       </main>
+
+      
       <FooterComponent />
     </div>
   );

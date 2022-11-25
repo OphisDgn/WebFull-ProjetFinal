@@ -1,3 +1,76 @@
+.container-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background: white;
+  padding: 4px;
+  box-shadow: 0 1px 3px 0px #a0a0a0;
+}
+.container-header .container-logo-name {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.container-header .container-logo-name .container-logo {
+  width: 66px;
+  height: 66px;
+  margin-right: 14px;
+}
+.container-header .container-logo-name .container-logo img {
+  height: 100%;
+  width: 100%;
+}
+.container-header .container-logo-name .container-name {
+  font-size: 39.15px;
+  font-family: fantasy;
+  font-weight: 400;
+  line-height: 70.73px;
+}
+.container-header .container-connexion {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 16px;
+}
+.container-header .container-connexion .btn-connexion {
+  align-items: center;
+  background: #C00000;
+  border: none;
+  width: 150px;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+}
 
+.footer-container-global {
+  background: black;
+  width: 100vw;
+  height: 144px;
+  color: white;
+}
+.footer-container-global .footer-liste {
+  list-style: none;
+}
+.footer-container-global .footer-liste li {
+  padding: 10px;
+}
+.footer-container-global .footer-liste li span {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.footer-container-global .footer-liste li span:hover {
+  text-decoration: underline;
+  transition: all 0.5s ease-in-out;
+}
+.footer-container-global .footer-copyright {
+  text-align: center;
+  font-family: "Abel Pro";
+  font-size: 16px;
+}
 
 /*# sourceMappingURL=index.css.map */

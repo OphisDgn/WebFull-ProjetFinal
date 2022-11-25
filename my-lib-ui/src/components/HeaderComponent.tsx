@@ -1,20 +1,25 @@
 import React from "react";
-import Image from "next/image";
 
-const HeaderComponent: React.FC = () => {
+type HeaderComponentProps = {
+  url: string;
+}
+
+const HeaderComponent: React.FC<HeaderComponentProps> = (props) => {
+  const { url } = props;
+
   return (
     <header>
       <div className="container-header">
         <div className="container-logo-name">
           <div className="container-logo">
-            <Image src="/favicon.ico" alt="logo" width="50" height="50"/>
+            <img src="/images/Logo.png"/>
           </div>
           <div className="container-name">
             <span>RIDE</span>
           </div>
         </div>
         <div className="container-connexion">
-          <button className="btn-connexion">Connexion</button>
+          <a href={url} className="btn-connexion">Connexion</a>
         </div>
       </div>
     </header>
