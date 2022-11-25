@@ -15,82 +15,37 @@ a {
   box-sizing: border-box;
 }
 
-.container-header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  background: white;
-  padding: 4px;
-}
-
-.container-logo-name {
-  flex-basis: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-.container-logo {
-  background: black;
-  width: 66px;
-  height: 66px;
-  margin-right: 14px;
-}
-
-.container-name {
-  font-size: 39.15px;
-  font-family: fantasy;
-  font-weight: 400;
-  line-height: 70.73px;
-}
-
-.container-connexion {
-  flex-basis: 50%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 12px 16px;
-}
-
-.btn-connexion {
-  align-items: center;
-  background: #C00000;
-  border: none;
-  width: 150px;
-  font-size: 16px;
-  color: white;
-  font-weight: 600;
-}
-
+/* ImageHomeComponent */
 .section-img-text {
-  width: 100vw;
+  width: 100%;
   height: 424px;
   position: relative;
 }
 
-.imgHome {
+.section-img-text .imgHome {
   width: 100%;
   height: 100%;
-  background-image: url("/voitures.jpg");
+  background-image: url("/images/voitures.jpg");
   background-repeat: no-repeat;
   background-position: unset;
   background-size: cover;
 }
 
-.container-description {
+.section-img-text .container-description {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.description {
+.section-img-text .description {
   background: white;
   height: 104px;
   width: 795.92px;
   padding: 16px 43px;
 }
 
-.separator {
+.section-img-text .separator {
   margin: auto;
   width: 750px;
   border: 1px solid #C00000;
@@ -145,10 +100,35 @@ a {
   flex-direction: column;
   flex-wrap: wrap;
 }
-
 .form_register_row_position{
   display: flex;
   flex-direction: row;
   margin-top: 10px;
 }
 
+/*PAGE CONNEXION*/
+
+.connexion_title{
+  text-align: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.login_page_position{
+  display: flex;
+  flex-direction: column;
+}
+
+.retour_link{
+  text-align: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-right: 275px;
+  margin-bottom: -13px;
+}
