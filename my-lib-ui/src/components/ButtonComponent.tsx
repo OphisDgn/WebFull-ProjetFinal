@@ -6,7 +6,7 @@ type Props = React.DetailedHTMLProps<
   HTMLButtonElement
 > & { 
   label: string,
-  type: string
+  type: "button" | "submit" | "reset";
 };
 
 const ButtonComponent: React.FC<Props> = (props) => {
@@ -15,7 +15,7 @@ const ButtonComponent: React.FC<Props> = (props) => {
 
   return (
     <div className="my-lib-ui-form-field">
-      <button type={type}>{label}</button>
+      <button className="button_submit" type={type}>{label}</button>
     </div>
   );
 };

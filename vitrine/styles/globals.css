@@ -95,3 +95,60 @@ a {
   width: 750px;
   border: 1px solid #C00000;
 }
+
+/*FORM*/
+
+.main_form
+{
+  display: flex;
+  justify-content: center;
+}
+
+.form_register 
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+ 
+}
+
+.form_title{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 25px;
+  /* identical to box height */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #C00000;
+}
+
+.form_register_label_radio_title
+{
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+
+}
+
+.radio_register_position
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.form_register_input_position{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form_register_row_position{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+

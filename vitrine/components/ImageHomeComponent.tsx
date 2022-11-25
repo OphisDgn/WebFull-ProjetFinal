@@ -11,7 +11,7 @@ const ImageHomeComponent: React.FC = () => {
                 Notre expérience est à votre service pour répondre à toutes vos demandes</span>
             </div>
         </div>
-        <div class="separator"></div>
+        <div className="separator"></div>
     </section>
   );
 };
