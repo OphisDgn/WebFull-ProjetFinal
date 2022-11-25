@@ -6,7 +6,7 @@ type Props = React.DetailedHTMLProps<
   HTMLButtonElement
 > & { 
   label: string,
-  type: string
+  type: "button" | "submit" | "reset";
 };
 
 const ButtonComponent: React.FC<Props> = (props) => {
