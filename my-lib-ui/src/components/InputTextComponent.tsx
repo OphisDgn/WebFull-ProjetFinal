@@ -10,7 +10,7 @@ const InputComponent: React.FC<Props> = (props) => {
   return (
     <div className="my-lib-ui-form-field">
       <label className="my-lib-ui-label">{label}</label>
-      <input type={type} {...props} className="my-lib-ui-input" />
+      <input type={type} {...props} className="my-lib-ui-input" required/>
     </div>
   );
 };

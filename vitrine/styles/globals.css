@@ -57,6 +57,7 @@ a {
 {
   display: flex;
   justify-content: center;
+  margin-top: 2%;
 }
 
 .form_register 
@@ -106,3 +107,19 @@ a {
   margin-top: 10px;
 }
 
+/* MESSAGE DE CONFIRMATION REGISTER */
+
+.section-message-confirmation {
+  width: 42%;
+}
+
+.msg-container-message > span {
+  white-space: pre-line;
+}
+
+.msg-container-download {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 3%;
+}

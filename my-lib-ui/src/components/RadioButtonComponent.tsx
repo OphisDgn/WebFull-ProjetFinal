@@ -6,7 +6,7 @@ const RadioButtonComponent: React.FC<Props> = (props) => {
   const {label} = props;
   return (
     <div>
-      <input type="radio"/>
+      <input type="radio" required/>
       <label>{label}</label>
     </div>
   );
