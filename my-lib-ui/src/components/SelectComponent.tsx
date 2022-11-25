@@ -12,7 +12,7 @@ const SelectComponent: React.FC<Props> = (props) => {
   return (
     <div className="my-lib-ui-form-field">
       <label className="my-lib-ui-label">{label}</label>
-      <select className="my-lib-ui-select">
+      <select className="my-lib-ui-select" required>
         {props.children}
       </select>
     </div>

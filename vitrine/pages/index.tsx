@@ -18,7 +18,6 @@ const Home: NextPage = () => {
         <FormComponent formType="register"/>
       </main>
 
-      
       <FooterComponent />
     </div>
   );
