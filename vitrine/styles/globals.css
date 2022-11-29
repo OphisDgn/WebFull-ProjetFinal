@@ -53,7 +53,7 @@ a {
 
 /*FORM*/
 
-.main_form {
+.main_form.main_register {
   display: flex;
   justify-content: center;
   margin-top: 2%;
@@ -113,7 +113,9 @@ a {
 }
 
 .main_login {
-  height: 737px;
+  height: 478px;
+  display: flex;
+  justify-content: center;
 }
 
 .form_login {
@@ -142,16 +144,25 @@ a {
   flex-direction: column;
 }
 
+.login_return-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
 .retour_link {
-  text-align: center;
   font-family: 'Roboto';
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 20px;
   margin-right: 275px;
-  margin-bottom: -13px;
 }
+
+.retour_link svg {
+  color: #C00000;
+  vertical-align: text-top;
+  font-size: 21px;
+}
+
 
 .form_login_figma_row .my-lib-ui-form-field {
   width: 100%;
