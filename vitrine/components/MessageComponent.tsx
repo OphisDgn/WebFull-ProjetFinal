@@ -5,7 +5,7 @@ const MessageComponent: React.FC = () => {
     <section className="section-message-confirmation">
       <div className="msg-container-message">
         <span>
-          Votre demande d’inscription a bien été prise en compte. 
+          Votre demande d’inscription a bien été prise en compte. <br/>
           Vous allez recevoir une confirmation par mail, en attendant vous pouvez télécharger l’application.
         </span>
       </div>

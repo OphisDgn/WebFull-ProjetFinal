@@ -7,10 +7,10 @@ import { HeaderComponent, FooterComponent } from 'my-lib-ui';
 const Login: NextPage = () => {
   const router = useRouter();
   return (
-    <div>
+    <div className="container-global-login">
       <HeadComponent />
       <HeaderComponent url="/login"/>
-      <main>
+      <main >
         <a href="/"><h1 className="retour_link">Retour</h1></a>
         <FormComponent formType="login"/>
       </main>

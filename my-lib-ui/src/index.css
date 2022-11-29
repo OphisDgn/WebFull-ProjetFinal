@@ -1,15 +1,123 @@
 .my-lib-ui-form-field {
   display: flex;
   flex-direction: column;
+  background: #f9f9f9;
+  padding: 14px 16px;
+  justify-content: center;
+  width: 48%;
 }
-.button_submit {
-  margin-top: 5px;
+@media screen and (max-width: 768px) {
+  .my-lib-ui-form-field {
+    width: 90%;
+    margin: auto;
+  }
+}
+.my-lib-ui-form-field .my-lib-ui-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5019607843);
+  font-family: "Roboto";
+}
+.my-lib-ui-form-field .my-lib-ui-input {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #C00000;
+  background: #f9f9f9;
+  padding: 4px 0;
+}
+.my-lib-ui-form-field .my-lib-ui-select {
+  border: none;
+  outline: none;
+  background-color: #f9f9f9;
+  padding: 5px 0px;
+  font-family: "Roboto";
+  font-size: 16px;
+}
+.my-lib-ui-form-field:has(.my-lib-ui-input:active), .my-lib-ui-form-field:has(.my-lib-ui-input:focus) {
+  border-bottom: 1px solid black;
+}
+.my-lib-ui-form-field:has(.my-lib-ui-input:active) .my-lib-ui-label, .my-lib-ui-form-field:has(.my-lib-ui-input:focus) .my-lib-ui-label {
+  font-weight: bold;
+  color: black;
+}
+
+.my-lib-ui-form-select-field {
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+  padding: 14px 16px;
+  justify-content: center;
+  width: 48%;
+}
+@media screen and (max-width: 768px) {
+  .my-lib-ui-form-select-field {
+    width: 99%;
+    margin: auto;
+  }
+}
+.my-lib-ui-form-select-field .my-lib-ui-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5019607843);
+  font-family: "Roboto";
+}
+.my-lib-ui-form-select-field .my-lib-ui-select {
+  border: none;
+  outline: none;
+  background-color: #f9f9f9;
+  padding: 5px 0px;
+  font-family: "Roboto";
+  font-size: 16px;
+}
+.my-lib-ui-form-select-field:has(.my-lib-ui-select:active), .my-lib-ui-form-select-field:has(.my-lib-ui-select:focus) {
+  border-bottom: 1px solid black;
+}
+.my-lib-ui-form-select-field:has(.my-lib-ui-select:active) .my-lib-ui-label, .my-lib-ui-form-select-field:has(.my-lib-ui-select:focus) .my-lib-ui-label {
+  font-weight: bold;
+  color: black;
+}
+
+.radioButton-container {
+  margin: 0 10px;
+}
+.radioButton-container .radioButton-input {
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.checkboxButton-container {
+  margin: 20px 0;
+}
+.checkboxButton-container .checkboxButton-input {
+  vertical-align: middle;
+  margin: 0 20px 0 10px;
+}
+@media screen and (max-width: 768px) {
+  .checkboxButton-container {
+    margin: 20px;
+  }
+}
+
+.my-lib-ui-form-field-button {
+  margin: 10px 0;
+}
+.my-lib-ui-form-field-button .button_submit {
   width: 326px;
   height: 44px;
-  left: 559px;
-  top: 453px;
   background: #C00000;
-  font-family: "Roboto";
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .my-lib-ui-form-field-button .button_submit {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .my-lib-ui-form-field-button {
+    margin: 25px;
+    flex-basis: 100%;
+  }
 }
 
 .container-header {

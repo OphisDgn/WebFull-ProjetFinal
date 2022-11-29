@@ -1,6 +1,5 @@
 import React from "react";
 
-
 type Props = React.DetailedHTMLProps<
   React.SelectHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -14,7 +13,7 @@ const ButtonComponent: React.FC<Props> = (props) => {
 
 
   return (
-    <div className="my-lib-ui-form-field">
+    <div className="my-lib-ui-form-field-button">
       <button className="button_submit" type={type}>{label}</button>
     </div>
   );

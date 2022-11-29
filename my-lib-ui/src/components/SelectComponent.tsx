@@ -10,7 +10,7 @@ type Props = React.DetailedHTMLProps<
 const SelectComponent: React.FC<Props> = (props) => {
   const { label } = props;
   return (
-    <div className="my-lib-ui-form-field">
+    <div className="my-lib-ui-form-select-field">
       <label className="my-lib-ui-label">{label}</label>
       <select className="my-lib-ui-select" required>
         {props.children}

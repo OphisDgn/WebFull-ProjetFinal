@@ -1,13 +1,13 @@
 import React from "react";
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement> &
-  { label: string };
+  { label: string, itemId: string };
 const RadioButtonComponent: React.FC<Props> = (props) => {
-  const {label} = props;
+  const { label, itemId } = props;
   return (
-    <div>
-      <input type="radio" required/>
-      <label>{label}</label>
+    <div className="radioButton-container">
+      <input type="radio" required itemID={itemId} className="radioButton-input"/>
+      <label htmlFor={itemId}>{label}</label>
     </div>
   );
 };
