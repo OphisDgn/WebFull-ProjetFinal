@@ -15,5 +15,7 @@ export const RadioButtonComponentView: ComponentStory< typeof RadioButtonCompone
 <RadioButtonComponent {...args} />;
 
 RadioButtonComponentView.args = {
-  label:"une entreprise"
+  label:"une entreprise",
+  itemID: "entreprise",
+  name:"whois"
 }

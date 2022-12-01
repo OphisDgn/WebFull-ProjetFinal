@@ -26,8 +26,8 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
               <div className="">
                 <label className="form_register_label_radio_title">Je suis :</label>
                 <div className="radio_register_position">
-                  <RadioButtonComponent label="une entreprise" itemId="entreprise"/>
-                  <RadioButtonComponent label="un particulier" itemId="particulier"/>
+                  <RadioButtonComponent label="une entreprise" itemId="entreprise" name="whois"/>
+                  <RadioButtonComponent label="un particulier" itemId="particulier" name="whois"/>
                 </div>
               </div>
             </div>
