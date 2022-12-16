@@ -1,6 +1,7 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import TokenCheck from "./TokenCheck";
 
 const app = express();
 const port = 8000;
@@ -15,11 +16,28 @@ app.get("/api", (_, res) => {
   res.send("Hello API");
 });
 
-app.get("/api/.user", (_, res) => {
+app.get("/api/hello", (_, res) => {
+  res.send("Hello");
+});
+
+app.get("/api/.user", TokenCheck, (_, res) => {
   axios.get("http://nginx/api/hello").then((onfulfilled) => {
     res.send(onfulfilled.data);
   });
 });
+
+app.get('/api/admin', TokenCheck, (_, res) => {
+  res.send('Hello Admin');
+});
+
+app.post('/api/check_role', TokenCheck, (_, res) => {
+  res.send('Check Role');
+});
+
+app.post('/api/login_check', (req, res) => {
+  res.send('Login Check');
+});
+
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
