@@ -35,7 +35,9 @@ app.post('/api/check_role', TokenCheck, (_, res) => {
 });
 
 app.post('/api/login_check', (req, res) => {
-  res.send('Login Check');
+  axios.post("http://localhost:8000/api/login_check", res.json(req.body)).then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  });
 });
 
 
