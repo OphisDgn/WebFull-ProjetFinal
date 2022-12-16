@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WebFullStack - API symfony{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { 
+        margin: 1em auto; 
+        max-width: 800px; 
+        width: 95%;
+         font: 18px/1.5 sans-serif; 
+    }
+    .example-wrapper code {
+         background: #F5F5F5;
+          padding: 2px 6px;
+    }
+    .container-img {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 300px;
+        width: 300px;
+        margin: auto;
+    }
+    .container-text > span {
+        font-size: 13px;
+    }
+    .container-text > h3 {
+        margin: 10px 0 0 0;
+    }
+    a { 
+        text-decoration: none;
+        color: black;
+    }
+    .container-products {
+        text-align: center;
+    }
+    .btnAddtoCart {
+        padding: 10px;
+        border: none;
+        outline: none;
+        background: green;
+        color: white;
+        cursor: pointer;
+    }
+    
+</style>
+
+<div class="example-wrapper">
+    <h1>Catalogue de figurine</h1>
+    
+    <div class="container-products">
+        {% for prod in catalog %}
+        <div>
+            <a href="{{ path('app_product', {id: prod.id}) }}" alt="Voir la figurine">
+                <div class="container-img" style="background-image: url('{{prod.image}}')"></div>
+                <div class="container-text" style="{{ prod.quantity == 0 ? 'color: red;' : ''}}">
+                    <h3>{{ prod.name }}</h3>
+                    <span>{{ prod.price }} € - Quantité : {{ prod.quantity }}</span>
+                </div>
+            </a>
+            
+            <button class="btnAddtoCart" style="{{ prod.quantity == 0 ? 'background: grey;' : '' }}">Ajouter au panier</button>
+        </div>
+        <hr/>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}

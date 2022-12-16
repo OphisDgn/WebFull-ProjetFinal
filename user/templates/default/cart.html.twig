@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WebFullStack - API symfony{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { 
+        margin: 1em auto; 
+        max-width: 800px; 
+        width: 95%;
+         font: 18px/1.5 sans-serif; 
+    }
+    .example-wrapper code {
+         background: #F5F5F5;
+          padding: 2px 6px;
+    }
+    .container-img {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 300px;
+        width: 300px;
+        margin: auto;
+    }
+    .container-text > span {
+        font-size: 13px;
+    }
+    .container-text > h3 {
+        margin: 10px 0 0 0;
+    }
+    .container-linkreturn > a {
+        text-decoration: none;
+        color: black;
+        transition: all .5s ease-out;
+    }
+    .container-linkreturn > a:hover {
+        text-decoration: underline;
+        transition: all .5s ease-out;
+    }
+    .container-products {
+        text-align: center;
+    }
+    
+</style>
+
+<div class="example-wrapper">
+    <h1>Mon panier</h1>
+    
+    <div class="container-linkreturn">
+        <a href="{{ path('app_catalog') }}">Retour au catalogue</a>
+    </div>
+
+    <div class="container-products">
+        {% for prod in products %}
+        <div>
+            <a href="{{ path('app_product', {id: prod.id}) }}">
+              <div style="background-image: url('{{prod.image}}'); height: 100px; width: 100px;"></div>
+            </a>
+        </div>
+        <hr/>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}
