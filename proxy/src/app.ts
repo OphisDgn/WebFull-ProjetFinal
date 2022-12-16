@@ -26,15 +26,15 @@ app.get("/api/.user", TokenCheck, (_, res) => {
   });
 });
 
-app.get('/api/admin', TokenCheck, (_, res) => {
+app.get('/api/.user/admin', TokenCheck, (_, res) => {
   res.send('Hello Admin');
 });
 
-app.post('/api/check_role', TokenCheck, (_, res) => {
+app.post('/api/.user/check_role', TokenCheck, (_, res) => {
   res.send('Check Role');
 });
 
-app.post('/api/login_check', (_, res) => {
+app.post('/api/.user/login_check', (_, res) => {
   axios.post("http://nginx/api/login_check", {username: _.body.username, password: _.body.password})
   .then((onfulfilled) => {
     res.send(onfulfilled.data);
