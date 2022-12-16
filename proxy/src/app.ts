@@ -34,9 +34,14 @@ app.post('/api/check_role', TokenCheck, (_, res) => {
   res.send('Check Role');
 });
 
-app.post('/api/login_check', (req, res) => {
-  axios.post("http://nginx/api/login_check", {username: req.body.username, password: req.body.password}).then((onfulfilled) => {
+app.post('/api/login_check', (_, res) => {
+  axios.post("http://nginx/api/login_check", {username: _.body.username, password: _.body.password})
+  .then((onfulfilled) => {
     res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
   });
 });
 
