@@ -17,9 +17,7 @@ app.get("/api", (_, res) => {
 });
 
 app.get("/api/hello", (_, res) => {
-  axios.get("http://nginx/api/hello").then((onfulfilled) => {
-    res.send(onfulfilled.data);
-  });
+  res.send("Hello API");
 });
 
 app.get("/api/.user/user", TokenCheck, (_, res) => {
