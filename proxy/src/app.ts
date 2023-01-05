@@ -20,6 +20,10 @@ app.get("/api/hello", (_, res) => {
   res.send("Hello API");
 });
 
+// ------------------------------------------
+// ------------------ User ------------------
+// ------------------------------------------
+
 app.get("/api/.user/user", TokenCheck, (_, res) => {
   axios.get("http://nginx/api/user",{
     headers: {
@@ -71,6 +75,30 @@ app.post('/api/.user/login_check', (_, res) => {
     console.log(onrejected.response.data)
     res.send(onrejected.response.data);
   });
+});
+
+// ------------------------------------------
+// -------------- Inscription ---------------
+// ------------------------------------------
+
+app.post('/api/inscription', (_, res) => {
+  // TO DO
+});
+
+app.post('/api/inscription/valide-user/.id', TokenCheck, (_, res) => {
+  // TO DO
+});
+
+// ------------------------------------------
+// ----------------- Users ------------------
+// ------------------------------------------
+
+app.get('/api/users', TokenCheck, (_, res) => {
+  // TO DO
+});
+
+app.get('/api/future-users', TokenCheck, (_, res) => {
+ // TO DO
 });
 
 

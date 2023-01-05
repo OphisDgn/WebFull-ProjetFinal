@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/api', name: 'api_user')]
 class UserApiController extends AbstractController
@@ -34,5 +35,25 @@ class UserApiController extends AbstractController
         }
 
         return $this->json(in_array($role, $user->getRoles()));
+    }
+
+    #[Route('/users', name: 'api_user_list', methods: "GET")]
+    public function listUsers(): Response
+    {
+        // TO DO 
+
+        return $this->json([
+            'message' => 'Liste des utilisateurs'
+        ]);
+    }
+
+    #[Route('/future-users', name: 'api_future_users', methods: "GET")]
+    public function futureUsers(): Response
+    {
+        // TO DO 
+
+        return $this->json([
+            'message' => 'Liste des prochains utilisateurs'
+        ]);
     }
 }

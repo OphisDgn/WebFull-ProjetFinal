@@ -31,6 +31,9 @@ class FutureUser
     #[ORM\Column]
     private ?bool $isValided = null;
 
+    #[ORM\OneToOne(inversedBy: 'futureUser', cascade: ['persist', 'remove'])]
+    private ?User $idUser = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class FutureUser
     public function setIsValided(bool $isValided): self
     {
         $this->isValided = $isValided;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?User
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(?User $idUser): self
+    {
+        $this->idUser = $idUser;
 
         return $this;
     }
