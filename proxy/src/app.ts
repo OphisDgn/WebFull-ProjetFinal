@@ -94,11 +94,31 @@ app.post('/api/inscription/valide-user/.id', TokenCheck, (_, res) => {
 // ------------------------------------------
 
 app.get('/api/users', TokenCheck, (_, res) => {
-  // TO DO
+  axios.get("http://nginx/api/users",{
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
 });
 
 app.get('/api/future-users', TokenCheck, (_, res) => {
- // TO DO
+  axios.get("http://nginx/api/future-users",{
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
 });
 
 

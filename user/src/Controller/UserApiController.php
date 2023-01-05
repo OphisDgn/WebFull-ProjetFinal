@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
+use App\Entity\User;
+use App\Entity\FutureUser;
+
 #[Route('/api', name: 'api_user')]
 class UserApiController extends AbstractController
 {
@@ -38,22 +41,24 @@ class UserApiController extends AbstractController
     }
 
     #[Route('/users', name: 'api_user_list', methods: "GET")]
-    public function listUsers(): Response
+    public function listUsers(EntityManagerInterface $entityManager): Response
     {
-        // TO DO 
+        $repository = $entityManager->getRepository(User::class);
+        $users = $repository->findAll();
 
         return $this->json([
-            'message' => 'Liste des utilisateurs'
+            'users' => $users
         ]);
     }
 
     #[Route('/future-users', name: 'api_future_users', methods: "GET")]
-    public function futureUsers(): Response
+    public function futureUsers(EntityManagerInterface $entityManager): Response
     {
-        // TO DO 
+        $repository = $entityManager->getRepository(FutureUser::class);
+        $users = $repository->findBy(array('isValided' => "0"));
 
         return $this->json([
-            'message' => 'Liste des prochains utilisateurs'
+            'users' => $users
         ]);
     }
 }

@@ -40,6 +40,7 @@ security:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/admin, roles: ROLE_ADMIN }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/api/inscription/valide-user, roles: ROLE_ADMIN }
         
 
 when@test:
