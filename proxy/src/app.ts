@@ -85,8 +85,18 @@ app.post('/api/inscription', (_, res) => {
   // TO DO
 });
 
-app.post('/api/inscription/valide-user/.id', TokenCheck, (_, res) => {
-  // TO DO
+app.post('/api/inscription/valide-user/:id', TokenCheck, (_, res) => {
+  axios.post("http://nginx/inscription/valide-user/"+ _.params.id,{
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
 });
 
 // ------------------------------------------

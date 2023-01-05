@@ -19,9 +19,9 @@ class SignUpController extends AbstractController
         ]);
     }
 
-    #[Route('/valide-users/{id}', methods: "POST" )]
+    #[Route('/valide-user/{id}', methods: "POST" )]
 
-    public function validUsers(): Response
+    public function validUser(): Response
     {
         // TO DO
 
