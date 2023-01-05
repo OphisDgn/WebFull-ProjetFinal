@@ -39,8 +39,8 @@ security:
     access_control:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/admin, roles: ROLE_ADMIN }
+        - { path: ^/inscription/valide-user/*, roles: ROLE_ADMIN }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
-        - { path: '^/inscription/valide-user/^[0-9]-[a-Z]$', roles: ROLE_ADMIN }
         
 
 when@test:

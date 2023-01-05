@@ -82,11 +82,18 @@ app.post('/api/.user/login_check', (_, res) => {
 // ------------------------------------------
 
 app.post('/api/inscription', (_, res) => {
-  // TO DO
+  axios.post("http://nginx/inscription/", {email: _.body.email, phone: _.body.phone, lastname: _.body.lastname, firstname: _.body.firstname, nationality: _.body.nationality})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
 });
 
 app.post('/api/inscription/valide-user/:id', TokenCheck, (_, res) => {
-  axios.post("http://nginx/inscription/valide-user/"+ _.params.id,{
+  axios.post("http://nginx/inscription/valide-user/"+ _.params.id, {
     headers: {
       'Authorization': _.headers.authorization
     }})

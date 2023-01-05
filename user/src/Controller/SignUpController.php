@@ -4,29 +4,47 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+
+use App\Entity\FutureUser;
+use App\Entity\User;
 
 #[Route('/inscription', name: 'app_sign_up')]
 class SignUpController extends AbstractController
 {
     #[Route('/', name: 'inscription_index', methods: "POST")]
-    public function index(): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // TO DO
+        $repository = $entityManager->getRepository(FutureUser::class);
+        $data = json_decode($request->getContent(), true);
+
+        $user = new FutureUser();
+        $user->setEmail($data["email"]);
+        $user->setPhone($data["phone"]);
+        $user->setNationality($data["nationality"]);
+        $user->setLastname($data["lastname"]);
+        $user->setFirstname($data["firstname"]);
+        $user->setIsValided(false);
+
+        $repository->save($user, true);
 
         return $this->json([
             'message' => 'Inscription réussie'
         ]);
     }
 
-    #[Route('/valide-user/{id}', methods: "POST" )]
-
-    public function validUser(): Response
+    #[Route('/valide-user/{id}', methods: "POST", name: 'app_valide_user')]
+    public function validUser($id): Response
     {
         // TO DO
+        $user = $this->getUser();
 
+        
         return $this->json([
-            'message' => 'Utilisateur validé'
+            'id' => $id,
+            'user'=> $user->getUserIdentifier()
         ]);
     }
 }
