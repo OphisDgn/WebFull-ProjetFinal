@@ -51,7 +51,17 @@ app.get('/api/.user/admin', TokenCheck, (_, res) => {
 });
 
 app.post('/api/.user/check_role', TokenCheck, (_, res) => {
-  res.send('Check Role');
+  axios.post("http://nginx/api/check_role", {  role: _.body.role }, {
+  headers: {
+    'Authorization': _.headers.authorization
+  }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
 });
 
 app.post('/api/.user/login_check', (_, res) => {
