@@ -17,17 +17,37 @@ app.get("/api", (_, res) => {
 });
 
 app.get("/api/hello", (_, res) => {
-  res.send("Hello");
-});
-
-app.get("/api/.user", TokenCheck, (_, res) => {
   axios.get("http://nginx/api/hello").then((onfulfilled) => {
     res.send(onfulfilled.data);
   });
 });
 
+app.get("/api/.user/user", TokenCheck, (_, res) => {
+  axios.get("http://nginx/api/user",{
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
+});
+
 app.get('/api/.user/admin', TokenCheck, (_, res) => {
-  res.send('Hello Admin');
+  axios.get("http://nginx/api/admin",{
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
 });
 
 app.post('/api/.user/check_role', TokenCheck, (_, res) => {
