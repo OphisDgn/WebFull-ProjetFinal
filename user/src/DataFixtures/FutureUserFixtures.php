@@ -25,7 +25,7 @@ class FutureUserFixtures extends Fixture
         $manager->persist($user);
     
         $user2 = new FutureUser();
-        $user2->setEmail("a.va@lid.er");
+        $user2->setEmail("a.va@lid2.er");
         $user2->setLastname("Euuh");
         $user2->setFirstname("Bbbb");
         $user2->setNationality("British");
