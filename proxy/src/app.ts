@@ -82,7 +82,7 @@ app.post('/api/.user/login_check', (_, res) => {
 // ------------------------------------------
 
 app.post('/api/inscription', (_, res) => {
-  axios.post("http://nginx/inscription/", {email: _.body.email, phone: _.body.phone, lastname: _.body.lastname, firstname: _.body.firstname, nationality: _.body.nationality})
+  axios.post("http://nginx/api/inscription/", {email: _.body.email, phone: _.body.phone, lastname: _.body.lastname, firstname: _.body.firstname, nationality: _.body.nationality})
   .then((onfulfilled) => {
     res.send(onfulfilled.data);
   })
@@ -92,10 +92,12 @@ app.post('/api/inscription', (_, res) => {
   });
 });
 
-app.post('/api/inscription/valide-user/:id', TokenCheck, (_, res) => {
-  axios.post("http://nginx/inscription/valide-user/"+ _.params.id, {
+app.post('/api/inscription/valide-user/:id', TokenCheck, (req, res) => {
+  console.log("req.params.id", req.params.id);
+  console.log(req.headers.authorization);
+  axios.post("http://nginx/api/inscription/valide-user/"+ req.params.id, {
     headers: {
-      'Authorization': _.headers.authorization
+      'Authorization': req.headers.authorization
     }})
   .then((onfulfilled) => {
     res.send(onfulfilled.data);

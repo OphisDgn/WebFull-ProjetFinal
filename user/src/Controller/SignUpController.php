@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\FutureUser;
 use App\Entity\User;
 
-#[Route('/inscription', name: 'app_sign_up')]
+#[Route('/api/inscription', name: 'app_sign_up')]
 class SignUpController extends AbstractController
 {
     #[Route('/', name: 'inscription_index', methods: "POST")]
@@ -35,11 +35,25 @@ class SignUpController extends AbstractController
         ]);
     }
 
-    #[Route('/valide-user/{id}', methods: ["POST"], name: 'app_valide_user')]
-    public function validUser(FutureUser $futureUser): Response
+    #[Route('/valide-user/{id}', methods: ["POST"], name: 'valide_user')]
+    public function validUser(FutureUser $futureUser, EntityManagerInterface $entityManager): Response
     {
+
+        $repository = $entityManager->getRepository(User::class);
+        
         $user = $this->getUser();
 
+        $user = new User();
+        $user->setEmail($futureUser->getEmail());
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword('test');
+        $repository->save($user, true);
+
+        $futureUser->setIsValided(true);
+        $futureUser->setIdUser($user);
+        $entityManager->persist($futureUser);
+        $entityManager->flush();
+        
         return $this->json([
             'role' => ($user ? $user->getRoles() : 'aucune idee'),
             'futureUser' => $futureUser
