@@ -35,16 +35,14 @@ class SignUpController extends AbstractController
         ]);
     }
 
-    #[Route('/valide-user/{id}', methods: "POST", name: 'app_valide_user')]
-    public function validUser($id): Response
+    #[Route('/valide-user/{id}', methods: ["POST"], name: 'app_valide_user')]
+    public function validUser(FutureUser $futureUser): Response
     {
-        // TO DO
         $user = $this->getUser();
 
-        
         return $this->json([
-            'id' => $id,
-            'user'=> $user->getUserIdentifier()
+            'role' => ($user ? $user->getRoles() : 'aucune idee'),
+            'futureUser' => $futureUser
         ]);
     }
 }
