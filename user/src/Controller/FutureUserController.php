@@ -6,6 +6,7 @@ use App\Entity\FutureUser;
 use App\Form\FutureUserType;
 use App\Repository\FutureUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,28 +29,18 @@ class FutureUserController extends AbstractController
         // ]);
     }
 
-    #[Route('/new', name: 'app_future_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FutureUserRepository $futureUserRepository): Response
+    #[Route('/create', name: 'app_future_user_create', methods: ['POST', 'GET'])]
+    public function create(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): Response
     {
-        $futureUser = new FutureUser();
-        $form = $this->createForm(FutureUserType::class, $futureUser);
-        $form->handleRequest($request);
+        $futureUser = $serializer->deserialize($request->getContent(), FutureUser::class, 'json');
+        $futureUser->setIsValided(false);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $futureUserRepository->save($futureUser, true);
-
-            return $this->redirectToRoute('app_future_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
+        $entityManager->persist($futureUser);
+        $entityManager->flush();
         
         return $this->json([
             'future_user' => $futureUser,
-            'form' => $form,
         ]);
-        // return $this->renderForm('future_user/new.html.twig', [
-        //     'future_user' => $futureUser,
-        //     'form' => $form,
-        // ]);
     }
 
     #[Route('/{id}', name: 'app_future_user_show', methods: ['GET'])]
@@ -101,10 +92,6 @@ class FutureUserController extends AbstractController
         }
         $entityManager->remove($delU);
         $entityManager->flush();
-
-        // return $this->json([
-        //     'message' => $msg
-        // ]);
 
         return $this->redirectToRoute('backofficeapp_future_user_index', [], Response::HTTP_SEE_OTHER);
         

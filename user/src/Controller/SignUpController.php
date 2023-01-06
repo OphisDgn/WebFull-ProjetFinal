@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 use App\Entity\FutureUser;
 use App\Entity\User;
@@ -36,14 +37,14 @@ class SignUpController extends AbstractController
     }
 
     #[Route('/valide-user/{id}', methods: ["POST"], name: 'valide_user')]
-    public function validUser(FutureUser $futureUser, EntityManagerInterface $entityManager): Response
+    public function validUser(FutureUser $futureUser, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
     {
         $repository = $entityManager->getRepository(User::class);
         
         $user = new User();
         $user->setEmail($futureUser->getEmail());
         $user->setRoles(['ROLE_USER']);
-        $user->setPassword('test');
+        $user->setPassword($hasher->hashPassword($user, 'test1'));
         $user->setFutureUser($futureUser);
         $repository->save($user, true);
 

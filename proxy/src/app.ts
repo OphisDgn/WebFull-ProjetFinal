@@ -160,8 +160,8 @@ app.get('/api/backoffice', TokenCheck, (_, res) => {
   });
 });
 
-app.post('/api/backoffice/new', TokenCheck, (_, res) => {
-  axios.post("http://nginx/api/backoffice/new", {email: _.body.email, phone: _.body.phone, lastname: _.body.lastname, firstname: _.body.firstname, nationality: _.body.nationality}, {
+app.post('/api/backoffice/create', TokenCheck, (_, res) => {
+  axios.post("http://nginx/api/backoffice/create", {email: _.body.email, phone: _.body.phone, lastname: _.body.lastname, firstname: _.body.firstname, nationality: _.body.nationality}, {
     headers: {
       'Authorization': _.headers.authorization
     }})
@@ -173,7 +173,6 @@ app.post('/api/backoffice/new', TokenCheck, (_, res) => {
     res.send(onrejected.response.data);
   });
 });
-
 
 app.get('/api/backoffice/:id', TokenCheck, (_, res) => {
   axios.get("http://nginx/api/backoffice/"+ _.params.id, {
