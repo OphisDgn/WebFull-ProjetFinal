@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FutureUser{% endblock %}
+
+{% block body %}
+    <h1>FutureUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ future_user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ future_user.email }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ future_user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ future_user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ future_user.phone }}</td>
+            </tr>
+            <tr>
+                <th>Nationality</th>
+                <td>{{ future_user.nationality }}</td>
+            </tr>
+            <tr>
+                <th>IsValided</th>
+                <td>{{ future_user.isValided ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_future_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_future_user_edit', {'id': future_user.id}) }}">edit</a>
+
+    {{ include('future_user/_delete_form.html.twig') }}
+{% endblock %}

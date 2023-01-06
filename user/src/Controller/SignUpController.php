@@ -38,15 +38,13 @@ class SignUpController extends AbstractController
     #[Route('/valide-user/{id}', methods: ["POST"], name: 'valide_user')]
     public function validUser(FutureUser $futureUser, EntityManagerInterface $entityManager): Response
     {
-
         $repository = $entityManager->getRepository(User::class);
         
-        $user = $this->getUser();
-
         $user = new User();
         $user->setEmail($futureUser->getEmail());
         $user->setRoles(['ROLE_USER']);
         $user->setPassword('test');
+        $user->setFutureUser($futureUser);
         $repository->save($user, true);
 
         $futureUser->setIsValided(true);
@@ -55,7 +53,6 @@ class SignUpController extends AbstractController
         $entityManager->flush();
         
         return $this->json([
-            'role' => ($user ? $user->getRoles() : 'aucune idee'),
             'futureUser' => $futureUser
         ]);
     }

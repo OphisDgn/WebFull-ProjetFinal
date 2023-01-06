@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FutureUserController!{% endblock %}
+{% block title %}FutureUser index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>FutureUser index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Phone</th>
+                <th>Nationality</th>
+                <th>IsValided</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for future_user in future_users %}
+            <tr>
+                <td>{{ future_user.id }}</td>
+                <td>{{ future_user.email }}</td>
+                <td>{{ future_user.lastname }}</td>
+                <td>{{ future_user.firstname }}</td>
+                <td>{{ future_user.phone }}</td>
+                <td>{{ future_user.nationality }}</td>
+                <td>{{ future_user.isValided ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_future_user_show', {'id': future_user.id}) }}">show</a>
+                    <a href="{{ path('app_future_user_edit', {'id': future_user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/src/Controller/FutureUserController.php'|file_link(0) }}">src/Controller/FutureUserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/templates/future_user/index.html.twig'|file_link(0) }}">templates/future_user/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('app_future_user_new') }}">Create new</a>
 {% endblock %}

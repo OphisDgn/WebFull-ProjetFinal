@@ -141,6 +141,69 @@ app.get('/api/future-users', TokenCheck, (_, res) => {
 });
 
 
+// ------------------------------------------
+// --------- Backoffice Future User ---------
+// ------------------------------------------
+
+
+app.get('/api/backoffice', TokenCheck, (_, res) => {
+  axios.get("http://nginx/api/backoffice",{
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
+});
+
+app.post('/api/backoffice/new', TokenCheck, (_, res) => {
+  axios.post("http://nginx/api/backoffice/new", {email: _.body.email, phone: _.body.phone, lastname: _.body.lastname, firstname: _.body.firstname, nationality: _.body.nationality}, {
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
+});
+
+
+app.get('/api/backoffice/:id', TokenCheck, (_, res) => {
+  axios.get("http://nginx/api/backoffice/"+ _.params.id, {
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
+});
+
+app.delete('/api/backoffice/delete/:id', TokenCheck, (_, res) => {
+  axios.delete("http://nginx/api/backoffice/delete/" + _.params.id, {
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
+});
+
+
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });

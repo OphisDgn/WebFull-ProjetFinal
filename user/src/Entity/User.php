@@ -100,10 +100,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFutureUser(): ?FutureUser
-    {
-        return $this->futureUser;
-    }
+    // public function getFutureUser(): ?FutureUser
+    // {
+    //     return $this->futureUser;
+    // }
 
     public function setFutureUser(?FutureUser $futureUser): self
     {
