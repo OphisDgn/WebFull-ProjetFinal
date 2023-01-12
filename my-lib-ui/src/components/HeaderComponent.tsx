@@ -1,11 +1,12 @@
 import React from "react";
 
 type HeaderComponentProps = {
-  url: string;
+  url: string,
+  btnText: string
 }
 
 const HeaderComponent: React.FC<HeaderComponentProps> = (props) => {
-  const { url } = props;
+  const { url, btnText } = props;
 
   return (
     <header>
@@ -19,7 +20,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = (props) => {
           </div>
         </div>
         <div className="container-connexion">
-          <a href={url} className="btn-connexion">Connexion</a>
+          <a href={url} className="btn-connexion">{btnText}</a>
         </div>
       </div>
     </header>

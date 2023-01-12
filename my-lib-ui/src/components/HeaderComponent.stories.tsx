@@ -15,5 +15,6 @@ export const HeaderComponentView: ComponentStory<typeof HeaderComponent> = (args
 
 
 HeaderComponentView.args = {
-  url: "#" 
+  url: "#" ,
+  btnText: "Connexion"
 }

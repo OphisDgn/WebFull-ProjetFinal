@@ -13,7 +13,7 @@ export default {
 
 export const ButtonComponentView: ComponentStory<typeof ButtonComponent> = (
   args
-) => <ButtonComponent {...args}>Button</ButtonComponent>;
+) => <ButtonComponent {...args}/>;
 
 ButtonComponentView.args = {
   label: "Demander mon inscription",

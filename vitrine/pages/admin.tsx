@@ -1,21 +1,20 @@
-
 import type { NextPage } from "next";
 
 import FormComponent from "../components/FormComponent";
 import HeadComponent from "../components/HeadComponent";
-import ImageHomeComponent from "../components/ImageHomeComponent";
+import ArrayAdminComponent from "../components/ArrayAdminComponent";
 import { HeaderComponent, FooterComponent } from "my-lib-ui";
 
 
-const Home: NextPage = () => {
+const Admin: NextPage = () => {
   return (
     <div>
       <HeadComponent />
-      <HeaderComponent url="/login" btnText="Connexion"/>
+      <HeaderComponent url="/" btnText="Accueil"/>
       
       <main>
-        <ImageHomeComponent/>
-        <FormComponent formType="register"/>
+        <h3>GESTION BACKOFFICE</h3>
+        <ArrayAdminComponent/>
       </main>
 
       <FooterComponent />
@@ -23,4 +22,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Admin;

@@ -35,7 +35,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
       })
       .catch((onrejected) => {
         setRegister(0);
-        console.log(onrejected.response.data)
+        console.log(onrejected.response.data);
       });
       
     }

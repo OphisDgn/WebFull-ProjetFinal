@@ -13,7 +13,7 @@ const FooterComponent: React.FC = () => {
                 </li>
             </ul>
             <div className="footer-copyright">
-                <p>©Copyright 2022 RIDE. Tous droits reservés.</p>
+                <p>©Copyright 2023 RIDE. Tous droits reservés.</p>
             </div>
         </div>
     </footer>

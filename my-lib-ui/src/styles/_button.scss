@@ -14,11 +14,14 @@
         color: white;
         border: none;
         cursor: pointer;
-
         
         @include media-max(768px) {
             width: 100%;
         }
+    }
+
+    .button_submit.button_linkto {
+      padding: 5px 20px;
     }
     
   @include media-max(768px) {
