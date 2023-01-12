@@ -2,11 +2,13 @@
 
  
 ## Problèmes rencontrés :
+
 1. Fichier *security.yaml*
     - la route **" /api/inscription/valide-user/{id} "** qui ne voulait pas avoir de restriction d'accès, la route **" /api/inscription "** est donc en **PUBLIC_ACCESS**
 
 
 ## Insomnia : 
+
 1. Les variables utilisées : 
 ![Variables](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-variables.png)
 
