@@ -11,6 +11,21 @@ services:
     networks:
       - app-network
 
+  frontend:
+    build: ./vitrine
+    container_name: service-frontend
+    working_dir: /var/www/
+    volumes:
+      - ./vitrine:/var/www
+    stdin_open: true
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - app-network
+    ports:
+      - 3000:3000
+
   proxy:
     build: ./proxy
     container_name: service-proxy
