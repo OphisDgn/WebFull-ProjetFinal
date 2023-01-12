@@ -9,7 +9,12 @@ RUN npm install
 
 COPY . .
 
-RUN cd my-lib-ui && npm install yalc -g && npm install && npm run yalc:build
+WORKDIR /var/www/my-lib-ui/
+RUN npm install yalc -g
+RUN npm install
+RUN npm run yalc:build
+
+WORKDIR /var/www/
 RUN yalc link my-lib-ui
 
 EXPOSE 3000
