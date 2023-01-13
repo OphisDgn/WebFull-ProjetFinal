@@ -3,9 +3,28 @@
 ## Problèmes rencontrés
 
 1. Fichier *security.yaml*
-    - la route **" /api/inscription/valide-user/{id} "** qui ne voulait pas avoir de restriction d'accès, la route **" /api/inscription "** est donc en **PUBLIC_ACCESS**
+    - la route **" /api/inscription/valide-user/{id} "** qui ne voulait pas avoir de restriction d'accès, la route est donc en accès public
 
-## Insomnia
+## Storybook
+
+1. Le tableau ArrayComponent
+![Storybook arrayComponent](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/storybook.png)
+
+## Visuel du site
+
+- Accueil
+![Accueil](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-home.png)
+- Message après l'inscription
+![Message d'inscription](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-message-inscription.png)
+- Connexion
+![Connexion](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-connexion.png)
+- Panel administrateur
+![Panel admin](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-admin.png)
+- Panel administrateur après validation d'un futurUser
+![Panel admin après validation d'un user](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-apres-validation.png)
+
+
+## Les routes Insomnia
 
 1. Les variables utilisées :
 ![Variables](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-variables.png)
