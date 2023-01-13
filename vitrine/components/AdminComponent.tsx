@@ -1,50 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+
+import axios from "axios";
 import { ArrayComponent } from "my-lib-ui";
 
 const AdminComponent: React.FC = () => {
   const hd = ["Statut", "NOM Prenom", "Coordonnées", "Nationalité", "Action"];
-  const it = [
-    {
-      "id": 1,
-      "lastname": "LOOO",
-      "firstname": "Koooo",
-      "email": "loo.koo@dd.ff",
-      "phone": "16513",
-      "nationality": "Française",
-      "isValided": false
-    },
-    {
-      "id": 2,
-      "lastname": "LOOO",
-      "firstname": "SSSSA",
-      "email": "loo.koo@dd.ff",
-      "phone": "16513",
-      "nationality": "Française",
-      "isValided": false
-    },
-    {
-      "id": 3,
-      "lastname": "LKKKKKKK",
-      "firstname": "JUUUUUU",
-      "email": "loo.koo@dd.ff",
-      "phone": "16513",
-      "nationality": "Française",
-      "isValided": true
-    },
-    {
-      "id": 4,
-      "lastname": "LOOO",
-      "firstname": "DFDFF",
-      "email": "loo.koo@dd.ff",
-      "phone": "16513",
-      "nationality": "Française",
-      "isValided": false
-    }
-  ];
+  const [item, setItem] = useState<[]>([]);
 
+ 
+  const token =  typeof window !== 'undefined' ?  localStorage.getItem('token') :null;
+
+ axios.get('http://localhost:8000/api/future-users', 
+ {
+     headers: {
+                'Authorization': `Bearer ${token}`
+              }
+ }
+ ).then((response) => {
+      setItem(response.data);
+
+      
+    });
   return (
     <section className="panel-admin-container">
-        <ArrayComponent items={it} headers={hd}/>
+        <ArrayComponent items={item} headers={hd}/>
     </section>
   );
 };
