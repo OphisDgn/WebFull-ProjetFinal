@@ -50,7 +50,7 @@
 ![Is admin (par admin)](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-isadmin.png)
 12. GET - Liste des users :
 ![Liste des users](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-list-users.png)
-13. GET - Liste des futurs sers :
+13. GET - Liste des futurs users :
 ![Liste des futurs users](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-futureuser.png)
 14. POST - Create user (avec route inscription) :
 ![Create user avec route inscription](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-create-futureuser-inscription.png)
