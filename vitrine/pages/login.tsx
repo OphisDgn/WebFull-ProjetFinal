@@ -18,8 +18,7 @@ const Login: NextPage = () => {
         <div className="login_return-container">
           <a href="/"><h1 className="retour_link"><IoIosArrowRoundBack /> Retour</h1></a>
         </div>
-        
-        <FormComponent formType="login"/>
+        <FormComponent loading={0}  formType="login"/>
       </main>
       <FooterComponent />
     </div>

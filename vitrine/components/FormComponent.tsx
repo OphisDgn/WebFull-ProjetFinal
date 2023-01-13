@@ -6,38 +6,106 @@ import axios from 'axios';
 type FormComponentProps = {
   formType: "register" | "login";
   loading: 0 | 1;
+  showError: 0 | 1;
+  errorMsg: string;
 } 
 
 const FormComponent: React.FC<FormComponentProps> = (props) => {
   const { formType } = props;
+  const [errorMsg, setErrorMsg] = useState<string>("");
   const [register, setRegister] = useState<number>(0);
   const [loading, setLoading] = useState<number>(0);
+  const [showError, setShowError] = useState<number>(0);
+
+  const errorHandler = (error: any) => {
+    setShowError(1)
+    setErrorMsg(error)
+    setTimeout(() => {
+      setShowError(0)
+    }, 5000);
+  }
 
   const onSubmitRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    let errorCodes = [401, 403, 404, 500, 502, 503, 504]
     let formInputs = document.querySelectorAll('input');
-    let formSelect = document.querySelector('select'); 
-    if (!formSelect) return;
-    const userData: Object = {
-      email: formInputs[4].value,
-      phone: formInputs[5].value,
-      nationality: formSelect.value,
-      lastname: formInputs[2].value,
-      firstname: formInputs[3].value,
-    }
-    console.log(userData)
-    if(userData) {
+    if(!formInputs) return;
+    
+    if(formType == "register") {
+      let formSelect = document.querySelector('select'); 
+      if (!formSelect) return;
+      const userData: Object = {
+        email: formInputs[4].value,
+        phone: formInputs[5].value,
+        nationality: formSelect.value,
+        lastname: formInputs[2].value,
+        firstname: formInputs[3].value,
+      }
+      console.log(userData)
+      if(userData) {
+        setLoading(1)
+        axios.post('http://localhost:8000/api/inscription', userData)
+        .then((onfulfilled) => {
+          console.log(onfulfilled.data);
+          setRegister(1);
+        })
+        .catch((onrejected) => {
+          setRegister(0);
+          console.log(onrejected.response.data);
+        });
+        
+      }
+    } else if (formType == "login") {
+      let token = ''
       setLoading(1)
-      axios.post('http://localhost:8000/api/inscription', userData)
+      let formInputs = document.querySelectorAll('input');
+      const userData: Object = {
+        username: formInputs[0].value,
+        password: formInputs[1].value,
+      }
+      axios.post('http://localhost:8000/api/.user/login_check', userData)
       .then((onfulfilled) => {
-        console.log(onfulfilled.data);
-        setRegister(1);
+        console.log(onfulfilled.data.token);
+        if(errorCodes.includes(onfulfilled.data.code)) {
+          setLoading(0)
+          errorHandler(onfulfilled.data.message)
+        } else {
+          token = onfulfilled.data.token;
+          axios.get('http://localhost:8000/api/.user/user', {
+              headers: {
+                'Authorization': `Bearer ${onfulfilled.data.token}`
+              }
+          })
+          .then((onfulfilled) => {
+            console.log(onfulfilled.data);
+            if(errorCodes.includes(onfulfilled.data.code)) {
+              setLoading(0)
+              errorHandler(onfulfilled.data.message)
+            } else {
+              setLoading(0)
+              if(onfulfilled.data.roles[0].includes("ROLE_ADMIN")) {
+                window.location.href = '/admin';
+                // STOCKER LE TOKEN DANS LE LOCALSTORE :
+                localStorage.setItem('token', token);
+
+              } else {
+                errorHandler("Vous ne pouvez pas vous connecter avec ce compte : NOT ADMIN")
+                setTimeout(() => {
+                  window.location.href = '/';
+                }, 2000);
+              }
+            }
+          })
+          .catch((onrejected) => {
+            console.log(onrejected.response.data);
+          })
+        }
       })
       .catch((onrejected) => {
-        setRegister(0);
+        setLoading(0)
+        errorHandler(onrejected.response.message)
         console.log(onrejected.response.data);
-      });
-      
+      })
     }
   };
 
@@ -100,12 +168,25 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
       )}
       {formType == "login" && (
           <div className="form_login">
-            <h1 className="form_title">Connexion</h1>
-            <div className="form_login_figma_row">
-              <InputTextComponent label="Identifiant" type="text" name="username"/>
-              <InputTextComponent label="Mot de passe" type="password" name="password"/>
-              <ButtonComponent type={'submit'} label="Connexion"/>
-            </div>
+            <form onSubmit={(e) => onSubmitRegister(e)}>
+              <h1 className="form_title">Connexion</h1>
+              <div className="form_login_figma_row">
+                <InputTextComponent label="Identifiant" type="text" name="username"/>
+                <InputTextComponent label="Mot de passe" type="password" name="password"/>
+                {showError==1 && (
+                  <p className="form_login_error">{ errorMsg }</p>
+                )}
+                {loading==0 && (
+                  <ButtonComponent type={'submit'} label="Connexion"/>
+                )}
+                {loading==1 && (
+                <div className="form_register_figma_centered">
+                  <div className="loading-icon"></div>
+                </div>
+                )}
+
+              </div>
+            </form>
 
           </div>
         )

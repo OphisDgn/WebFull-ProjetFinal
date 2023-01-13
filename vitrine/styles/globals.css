@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html,
 body {
   padding: 0;
@@ -106,6 +108,30 @@ a {
   align-items: center;
 }
 
+.form_login_error {
+  color: red;
+  font-size: 16px;
+  animation: shake 0.5s linear;
+} 
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .loading-icon {
   height: 50px;
   width: 50px;
@@ -156,6 +182,7 @@ a {
   background: white;
   padding: 16px 9px;
   height: 320px;
+  width: 350px;
 }
 
 .main_login .form_title {
