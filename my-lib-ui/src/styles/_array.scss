@@ -1,0 +1,23 @@
+.array-component {
+    width: 100%;
+
+    thead {
+        text-align: left;
+
+        th {
+            border-bottom: 1px solid #e5e5e5;
+        }
+    }
+
+    tbody > tr > td {
+        span#isCheck {
+            font-size: 30px;
+            vertical-align: middle;
+        }
+
+        span#isNotCheck {
+            font-size: 22px;
+            vertical-align: middle;
+        }
+    }
+}

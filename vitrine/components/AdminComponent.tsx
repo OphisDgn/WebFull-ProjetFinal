@@ -1,21 +1,8 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ArrayComponent } from "my-lib-ui";
 
-import ArrayComponent from "./ArrayComponent";
-
-import "../index.css";
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: "UI/ArrayComponent",
-  component: ArrayComponent,
-} as ComponentMeta<typeof ArrayComponent>;
-
-export const ArrayComponentView: ComponentStory<typeof ArrayComponent> = (
-  args
-) => <ArrayComponent {...args}/>;
-
-const hd = ["Statut", "NOM Prenom", "Coordonnées", "Nationalité", "Action"];
+const AdminComponent: React.FC = () => {
+  const hd = ["Statut", "NOM Prenom", "Coordonnées", "Nationalité", "Action"];
   const it = [
     {
       "id": 1,
@@ -55,8 +42,11 @@ const hd = ["Statut", "NOM Prenom", "Coordonnées", "Nationalité", "Action"];
     }
   ];
 
+  return (
+    <section className="panel-admin-container">
+        <ArrayComponent items={it} headers={hd}/>
+    </section>
+  );
+};
 
-ArrayComponentView.args = {
-    items: it,
-    headers: hd
-}
+export default AdminComponent;

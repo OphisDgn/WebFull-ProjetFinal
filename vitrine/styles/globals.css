@@ -318,3 +318,15 @@ a {
     margin: 10px 0;
   }
 }
+
+
+
+/* PAGE ADMIN */
+.main-admin-container {
+  width: 90%;
+  margin: auto;
+}
+
+.panel-admin-container {
+  background: white;
+}

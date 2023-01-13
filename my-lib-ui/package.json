@@ -76,6 +76,7 @@
     "dist"
   ],
   "dependencies": {
+    "react-icons": "^4.7.1",
     "sass": "^1.54.9"
   }
 }
