@@ -17,10 +17,8 @@ const AdminComponent: React.FC = () => {
               }
  }
  ).then((response) => {
-      setItem(response.data);
-
-      
-    });
+    setItem(response.data.users);
+  });
   return (
     <section className="panel-admin-container">
         <ArrayComponent items={item} headers={hd}/>
