@@ -7,7 +7,7 @@ type Props = React.DetailedHTMLProps<
   label: string,
   type?: "button" | "submit" | "reset",
   linkTo?: string
-  customClass?: "";
+  customClass?: string;
 };
 
 const ButtonComponent: React.FC<Props> = (props) => {
