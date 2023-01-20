@@ -14,7 +14,8 @@ def create_table():
 @app.route("/", methods=["GET"])
 def getAllCars():
     cars = CarModel.query.all()
-    return render_template("list.html", cars = cars)
+    #print(cars)
+    return jsonify({"cars": cars})
 
 
 @app.route("/create", methods=['POST'])
