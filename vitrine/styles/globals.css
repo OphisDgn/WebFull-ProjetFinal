@@ -327,6 +327,14 @@ a {
   margin: auto;
 }
 
+main {
+  min-height: calc(100vh - 144px - 113px);
+}
+
 .panel-admin-container {
   background: white;
+}
+
+.edit-button {
+  background: #7e7e7e !important;
 }

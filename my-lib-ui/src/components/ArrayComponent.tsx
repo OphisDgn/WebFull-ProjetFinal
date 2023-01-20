@@ -1,10 +1,11 @@
 import React from "react";
 import { IoIosCheckmark, IoMdPaw } from "react-icons/io";
-
+import ButtonComponent from "./ButtonComponent";
 
 type ArrayProps =  { 
   items?: User[],
   headers?: string[]
+  validateMethod?: any
 };
 
 type User = {
@@ -18,7 +19,7 @@ type User = {
 };
 
 const ArrayComponent: React.FC<ArrayProps> = (Props) => {
-  const { items, headers } = Props;
+  const { items, headers, validateMethod } = Props;
 
   return (
     <div>
@@ -40,7 +41,17 @@ const ArrayComponent: React.FC<ArrayProps> = (Props) => {
                 {item.phone}
               </td>
               <td>{item.nationality}</td>
-              <td>Actions :smiley:</td>
+              <td>
+                <form onSubmit={(e) => validateMethod(e)}>
+                  <input type="hidden" name="userID" value={item.id} />
+                  {item.isValided && (
+                  <ButtonComponent type={'submit'} customClass="edit-button" label="Editer"/>
+                  )}
+                  {!item.isValided && (
+                  <ButtonComponent type={'submit'} label="Valider"/>
+                  )}
+                </form>
+                </td>
             </tr>
           ))}
         </tbody>
