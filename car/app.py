@@ -1,5 +1,5 @@
 from models import db, CarModel
-from flask import Flask, jsonify, render_template, request, redirect
+from flask import Flask, jsonify, abort, render_template, request, redirect
 import json
 
 app = Flask(__name__)
@@ -25,18 +25,33 @@ def create():
     car = CarModel(name=name, price=price, image=image)
     db.session.add(car)
     db.session.commit()
-    return jsonify(car.__repr__())
+    return jsonify(car.getCar())
 
-@app.route("/<int:id>/update", methods=['POST'])
+
+@app.route("/update/<int:id>", methods=['POST'])
 def update(id):
-    car = CarModel.query.filter_by(id=id).first()
     name = request.json['name']
     price = request.json['price']
     image = request.json['image']
-    db.session.query(CarModel).filter(car.id == id).update(
+    db.session.query(CarModel).filter(CarModel.id == id).update(
     {'name':name, 'price':price, 'image':image}, synchronize_session="fetch")
     db.session.commit()
-    return jsonify(car.__repr__())
+    car = CarModel.query.filter_by(id=id).first()
+    return jsonify(car.getCar())
+
+
+@app.route('/delete/<int:id>', methods= ['GET', 'POST'])
+def delete(id):
+    car = CarModel.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        if car:
+            db.session.delete(car)
+            db.session.commit()
+            return redirect('/')
+        else: 
+            return f"Aucune voiture n'existe avec cet id {id}"
+    else:
+        abort(404)
 
 
 app.run(host='localhost', port=5000)
