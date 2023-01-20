@@ -21,6 +21,7 @@ import router from '@/router'
             const isLoggedIn = inject('isLoggedIn')
 
             const setError = (err) => {
+                loading.value = false
                 error.value = true
                 errorText.value = err
                 setTimeout(() => {
@@ -33,7 +34,6 @@ import router from '@/router'
                 loading.value = true
                 axios.post('http://localhost:8000/api/.user/login_check', userInfo.value)
                 .then((onfulfilled) => {
-                    loading.value = false
                     if(errorCodes.includes(onfulfilled.data.code)) {
                         setError(onfulfilled.data.message)
                     } else {
@@ -43,7 +43,6 @@ import router from '@/router'
                             }
                         })
                         .then((onfulfilled) => {
-                            loading.value = false
                             if(errorCodes.includes(onfulfilled.data.code)) {
                                 setError(onfulfilled.data.message)
                             } else {
@@ -53,7 +52,6 @@ import router from '@/router'
                             }
                         })
                         .catch((onrejected) => {
-                            loading.value = false
                             console.log("error:", onrejected.response.message)
                             setError( onrejected.response.message)
                         }
@@ -61,7 +59,6 @@ import router from '@/router'
                 })
                 .catch((onrejected) => {
                     console.log("error:", onrejected.response.message)
-                    loading.value = false
                     setError(onrejected.response.message)  
                 })
             }
