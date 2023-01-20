@@ -10,7 +10,7 @@ class CarModel(db.Model):
     id:id = db.Column(db.Integer, primary_key=True)
     name:str = db.Column(db.String(50), nullable=False)
     price:int = db.Column(db.Float, nullable=False)
-    image:str = db.Column(db.String(500), nullable=True)
+    image:str = db.Column(db.String(1000), nullable=True)
 
     def __repr__(self):
         return f"{self.id}:{self.name}"
