@@ -1,3 +1,7 @@
+.parallax-overflow-container {
+    overflow: hidden;
+}
+
 .login-page {
 
     &_header {
@@ -6,6 +10,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        
 
         &-icon {
             display: flex;
@@ -24,6 +29,8 @@
     }
 
     &_form-container {
+        font-smooth: always;
+        -webkit-font-smoothing : antialiased;
         .error-text {
             color: $red;
             font-size: 12px;
@@ -31,7 +38,9 @@
         }
         width: 50%;
         margin: auto;
-        margin-top: 35px;
+        margin-top: -50px;
+        background: $bgLight;
+        padding: 35px;
         h1 {
             font: $fontL;
             font-size: 24px;
