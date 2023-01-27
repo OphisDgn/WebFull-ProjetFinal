@@ -325,8 +325,12 @@ a {
 .main-admin-container {
   width: 90%;
   margin: auto;
+  margin-top: 3%;
 }
 
+.main-admin-container > h3 {
+  font-size: 20px;
+}
 main {
   min-height: calc(100vh - 144px - 113px);
 }
@@ -337,4 +341,36 @@ main {
 
 .edit-button {
   background: #7e7e7e !important;
+}
+
+/* TABS */
+
+.main-admin-container .nav-tabs {
+  background: white;
+  border: none;
+}
+
+.main-admin-container .nav-item {
+  border: none;
+  outline: none;
+  position: relative;
+}
+
+.main-admin-container .nav-item .nav-link {
+  border: none;
+  color: black;
+}
+
+.main-admin-container .nav-item .nav-link.active {
+  font-weight: bold;
+}
+
+.main-admin-container .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 30%;
+  border-bottom: 2px solid red;
 }

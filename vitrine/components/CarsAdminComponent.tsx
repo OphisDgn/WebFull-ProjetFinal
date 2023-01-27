@@ -10,9 +10,9 @@ e.preventDefault()
 
 };
 
-const UserAdminComponent: React.FC = () => {
+const CarsAdminComponent: React.FC = () => {
   const hd = ["Marque", "Prix", "Actions"];
-  const [item, setItem] = useState<[]>([]);
+  const [carsItems, setCarsItems] = useState<[]>([]);
   const [loading, setLoading] = useState<number>(1);
 
    const requestList = (token: any) => {
@@ -24,7 +24,7 @@ const UserAdminComponent: React.FC = () => {
     })
     .then((response) => {
          console.log(response.data);
-         setItem(response.data.cars);
+         setCarsItems(response.data.cars);
          setLoading(0)
    })
    .catch((error) => { 
@@ -40,7 +40,7 @@ const UserAdminComponent: React.FC = () => {
   return (
     <section className="panel-admin-container">
       {loading==0 && (
-        <ArrayComponent carsItems={item} headers={hd} validateMethod={onSubmitRegister} typeList={"cars"}/>
+        <ArrayComponent carsItems={carsItems} headers={hd} validateMethod={onSubmitRegister} typeList={"cars"}/>
       )}
       {loading==1 && (
         <div className="form_register_figma_centered">
@@ -51,4 +51,4 @@ const UserAdminComponent: React.FC = () => {
   );
 };
 
-export default UserAdminComponent;
+export default CarsAdminComponent;
