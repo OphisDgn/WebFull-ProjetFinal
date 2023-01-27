@@ -2,6 +2,7 @@ import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 import TokenCheck from "./TokenCheck";
+import IsAdmin from "./IsAdmin";
 import cors from "cors";
 
 
@@ -197,6 +198,53 @@ app.get('/api/backoffice/:id', TokenCheck, (_, res) => {
 
 app.delete('/api/backoffice/delete/:id', TokenCheck, (_, res) => {
   axios.delete("http://nginx/api/backoffice/delete/" + _.params.id, {
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+  .then((onfulfilled) => {
+    res.send(onfulfilled.data);
+  })
+  .catch((onrejected) => {
+    console.log(onrejected.response.data)
+    res.send(onrejected.response.data);
+  });
+});
+
+
+// ------------------------------------------
+// --------- Backoffice CARS FLASK ----------
+// ------------------------------------------
+
+app.get('/cars', TokenCheck, (_, res) => {
+  axios.get("http://nginx/flask/cars", {
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+    .then((onfulfilled) => {
+      res.send(onfulfilled.data);
+    })
+    .catch((onrejected) => {
+      console.log(onrejected.response.data);
+      res.send(onrejected.response.data);
+    });
+});
+
+app.post('/cars/create', TokenCheck, IsAdmin, (_, res) => {
+  axios.post("http://nginx/flask/create", {name: _.body.name, price: _.body.price, image: _.body.image}, {
+    headers: {
+      'Authorization': _.headers.authorization
+    }})
+    .then((onfulfilled) => {
+      res.send(onfulfilled.data);
+    })
+    .catch((onrejected) => {
+      console.log(onrejected.response.data);
+      res.send(onrejected.response.data);
+    });
+});
+
+app.post('/cars/delete/:id', TokenCheck, IsAdmin, (_, res) => {
+  axios.post("http://nginx/flask/delete/" + _.params.id, {
     headers: {
       'Authorization': _.headers.authorization
     }})
