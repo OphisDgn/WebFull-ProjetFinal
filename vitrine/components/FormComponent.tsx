@@ -68,7 +68,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
         console.log(onfulfilled.data.token);
         if(errorCodes.includes(onfulfilled.data.code)) {
           setLoading(0)
-          errorHandler(onfulfilled.data.message)
+          errorHandler(onfulfilled.data.data)
         } else {
           token = onfulfilled.data.token;
           axios.get('http://localhost:8000/api/.user/user', {
@@ -103,7 +103,8 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
       })
       .catch((onrejected) => {
         setLoading(0)
-        errorHandler(onrejected.response.message)
+        console.log(onrejected.response.data);
+        errorHandler(onrejected.response.data);
         console.log(onrejected.response.data);
       })
     }

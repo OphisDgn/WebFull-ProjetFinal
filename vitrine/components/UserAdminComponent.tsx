@@ -24,7 +24,7 @@ const onSubmitRegister = (e: React.FormEvent<HTMLFormElement>) => {
   })
 };
 
-const AdminComponent: React.FC = () => {
+const UserAdminComponent: React.FC = () => {
   const hd = ["Statut", "NOM Prenom", "Coordonnées", "Nationalité", "Action"];
   const [item, setItem] = useState<[]>([]);
   const [loading, setLoading] = useState<number>(1);
@@ -65,4 +65,4 @@ const AdminComponent: React.FC = () => {
   );
 };
 
-export default AdminComponent;
+export default UserAdminComponent;
