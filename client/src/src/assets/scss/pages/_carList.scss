@@ -1,0 +1,169 @@
+.vehicules-container {
+    margin: 20px auto;
+    width: 80%;
+    .title-container {
+        h2 {
+            font: $fontL;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .vehicules-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        .vehicule-card {
+            cursor: pointer;
+            color: $textDark;
+            text-decoration: none;
+            font: $fontR;
+            width: 475px;
+            max-height: 500px;
+            background: $bgSecondary;
+            border-radius: 0 0 5px 5px;
+            margin-right: 25px;
+            margin-bottom: 25px;
+
+            &-image {
+                width: 100%;
+                height: 200px;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &-content {
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            &-title {
+                font: $fontXXL; 
+                font-size: 24px;
+            }
+
+            &-price {
+                font: $fontS;
+                font-size: 18px;
+                span {
+                    color: $red;
+                        font-weight: 500
+                }
+            }
+        }
+    }
+
+    .carInfos {
+        .loader {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            background: $bgSecondary;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            // transition: opacity 0.05s ease-in-out;
+            span {
+                font-size: 50px;
+                color: $red;
+                animation: spin 1s linear infinite;
+            }
+            &.show {
+                opacity: 1;
+            }
+        }
+
+        .button-back {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 50px;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            opacity: 1;
+            transition: opacity 0.2s ease-in-out;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        position: fixed;
+        right:0;
+        top:0;
+        height: 100vh;
+        width: 33%;
+        background: $bgSecondary;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        border-left: 2px solid $bgDark;
+        &.visible {
+            transform: translateX(0);
+        }
+        .vehicule-card {
+            cursor: pointer;
+            color: $textDark;
+            text-decoration: none;
+            font: $fontR;
+            width: 475px;
+            max-height: 500px;
+            background: $bgSecondary;
+            border-radius: 0 0 5px 5px;
+            margin-right: 25px;
+            margin-bottom: 25px;
+
+            &-image {
+                width: 100%;
+                height: 200px;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &-content {
+                padding: 20px;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+            }
+
+            &-title {
+                font: $fontXXL; 
+                font-size: 24px;
+            }
+
+            &-description {
+                font: $fontR;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            &-price {
+                font: $fontS;
+                font-size: 18px;
+                span {
+                    color: $red;
+                    font-weight: 500
+                }
+            }
+
+            &-specs {
+                border: 2px solid black;
+                margin: 20px auto;
+                width: 90%;
+                table-layout: fixed;
+
+                tr {
+                    padding: 15px;
+                    &:nth-child(even) {
+                        background: $bgLight;
+                    }
+                }
+            }
+        }
+    }
+}

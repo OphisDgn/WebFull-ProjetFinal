@@ -27,15 +27,17 @@ import parallaxElement from '../components/parallax-element.vue';
         };
         const handleConnect = () => {
             loading.value = true;
+            let token = ''
             axios.post("http://localhost:8000/api/.user/login_check", userInfo.value)
                 .then((onfulfilled) => {
                 if (errorCodes.includes(onfulfilled.data.code)) {
                     setError(onfulfilled.data.message);
                 }
                 else {
+                    token = onfulfilled.data.token
                     axios.get("http://localhost:8000/api/.user/user", {
                         headers: {
-                            "Authorization": `Bearer ${onfulfilled.data.token}`
+                            "Authorization": `Bearer ${token}`
                         }
                     })
                         .then((onfulfilled) => {
@@ -44,6 +46,7 @@ import parallaxElement from '../components/parallax-element.vue';
                         }
                         else {
                             console.log(onfulfilled.data);
+                            localStorage.setItem("token", token);
                             isLoggedIn.value = true;
                             router.push("/");
                         }
@@ -59,12 +62,20 @@ import parallaxElement from '../components/parallax-element.vue';
                 setError(onrejected.response.message);
             });
         };
+
+        const visible = (e) => {
+            e.target.innerHTML == 'visibility' ? e.target.innerHTML = 'visibility_off' : e.target.innerHTML = 'visibility'
+            let passwordInput = document.getElementById('password')
+            passwordInput.type == 'password' ? passwordInput.type = 'text' : passwordInput.type = 'password'
+        }
+
         return {
             userInfo,
             handleConnect,
             loading,
             error,
-            errorText
+            errorText,
+            visible
         };
     },
     components: {     
@@ -83,7 +94,7 @@ import parallaxElement from '../components/parallax-element.vue';
             </parallax-element>
         </header>
         <main>
-                <parallax-element :parallaxStrength="2.5" :type="'translation'"  class="login-page_form-container">
+                <parallax-element :parallaxStrength="0" :type="'translation'"  class="login-page_form-container">
                     <h1>Connexion</h1>
                     <p>Connectez-vous à l'aide des identifiants reçus dans votre mail d'activation.</p>
                     <form @submit.prevent="handleConnect">
@@ -93,11 +104,12 @@ import parallaxElement from '../components/parallax-element.vue';
                         </div>
                         <div class="input-group">                
                             <label for="password">Mot de passe</label>
-                            <input type="password" name="password" v-model="userInfo.password">
+                            <input type="password" name="password" id="password" v-model="userInfo.password">
+                            <span class="passwordToggler material-symbols-outlined" @click="visible($event)">visibility</span>
                         </div>
                         <parallax-element :parallaxStrength="10" :type="'depth'">
                             <div v-if="loading" class="loading-container">
-                                <span  class="loading material-symbols-outlined">cached</span>
+                                <span class="loading material-symbols-outlined">cached</span>
                             </div>
                             <input v-else :class="error ? 'error' : ''" type="submit" value="Connexion">
                         </parallax-element>

@@ -47,6 +47,17 @@
             margin-bottom: 20px;
         }
         .input-group {
+
+            .passwordToggler {
+                right: 0;
+                top: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                user-select: none;
+                cursor: pointer;
+            }
+            
+            position: relative;
             transition: border-bottom 0.2s ease;
             border-bottom: 2px solid $bgLight;
             display: flex;
