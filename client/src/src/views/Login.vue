@@ -2,104 +2,108 @@
     import { ref,  inject} from 'vue'
     import axios from 'axios'
 import router from '@/router'
-
+import parallaxContainer from '../components/parallax-container.vue';
+import parallaxElement from '../components/parallax-element.vue';
 
     export default {
-        setup() {
-            const userInfo = ref({
-                username: '',
-                password: ''
-            })
-
-            let errorCodes = [401, 403, 404, 500, 502, 503, 504]
-
-            const loading = ref(false)
-            const error = ref(false)
-
-            const errorText = ref("")
-
-            const isLoggedIn = inject('isLoggedIn')
-
-            const setError = (err) => {
-                loading.value = false
-                error.value = true
-                errorText.value = err
-                setTimeout(() => {
-                    error.value = false
-                    errorText.value = ""
-                }, 3000);
-            }
-
-            const handleConnect = () => {
-                loading.value = true
-                axios.post('http://localhost:8000/api/.user/login_check', userInfo.value)
+    setup() {
+        const userInfo = ref({
+            username: "",
+            password: ""
+        });
+        let errorCodes = [401, 403, 404, 500, 502, 503, 504];
+        const loading = ref(false);
+        const error = ref(false);
+        const errorText = ref("");
+        const isLoggedIn = inject("isLoggedIn");
+        const setError = (err) => {
+            loading.value = false;
+            error.value = true;
+            errorText.value = err;
+            setTimeout(() => {
+                error.value = false;
+                errorText.value = "";
+            }, 3000);
+        };
+        const handleConnect = () => {
+            loading.value = true;
+            axios.post("http://localhost:8000/api/.user/login_check", userInfo.value)
                 .then((onfulfilled) => {
-                    if(errorCodes.includes(onfulfilled.data.code)) {
-                        setError(onfulfilled.data.message)
-                    } else {
-                        axios.get('http://localhost:8000/api/.user/user', {
-                            headers: {
-                                'Authorization': `Bearer ${onfulfilled.data.token}`
-                            }
-                        })
-                        .then((onfulfilled) => {
-                            if(errorCodes.includes(onfulfilled.data.code)) {
-                                setError(onfulfilled.data.message)
-                            } else {
-                                console.log(onfulfilled.data)
-                                isLoggedIn.value = true
-                                router.push('/')
-                            }
-                        })
-                        .catch((onrejected) => {
-                            console.log("error:", onrejected.response.message)
-                            setError( onrejected.response.message)
+                if (errorCodes.includes(onfulfilled.data.code)) {
+                    setError(onfulfilled.data.message);
+                }
+                else {
+                    axios.get("http://localhost:8000/api/.user/user", {
+                        headers: {
+                            "Authorization": `Bearer ${onfulfilled.data.token}`
                         }
-                    )}
-                })
+                    })
+                        .then((onfulfilled) => {
+                        if (errorCodes.includes(onfulfilled.data.code)) {
+                            setError(onfulfilled.data.message);
+                        }
+                        else {
+                            console.log(onfulfilled.data);
+                            isLoggedIn.value = true;
+                            router.push("/");
+                        }
+                    })
+                        .catch((onrejected) => {
+                        console.log("error:", onrejected.response.message);
+                        setError(onrejected.response.message);
+                    });
+                }
+            })
                 .catch((onrejected) => {
-                    console.log("error:", onrejected.response.message)
-                    setError(onrejected.response.message)  
-                })
-            }
-
-            return {
-                userInfo,
-                handleConnect,
-                loading,
-                error,
-                errorText
-            }
-        }
+                console.log("error:", onrejected.response.message);
+                setError(onrejected.response.message);
+            });
+        };
+        return {
+            userInfo,
+            handleConnect,
+            loading,
+            error,
+            errorText
+        };
+    },
+    components: {     
+        parallaxContainer,
+        parallaxElement,
     }
+}
 </script>
 
 <template>
-    <header class="login-page_header">
-        <div class="login-page_header-icon">
-            <img src="assets/images/logo.png" alt="">
-            <p>Ride</p>
-        </div>
-    </header>
-    <main>
-        <div class="login-page_form-container">
-            <h1>Connexion</h1>
-            <p>Connectez-vous à l'aide des identifiants réçus dans votre mail d'activation.</p>
-            <form @submit.prevent="handleConnect">
-                <div class="input-group">                
-                    <label for="username">Identifiant</label>
-                    <input type="email" name="username" v-model="userInfo.username">
-                </div>
-                <div class="input-group">                
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="password" v-model="userInfo.password">
-                </div>
-                <div v-if="loading" class="loading-container">
-                    <span  class="loading material-symbols-outlined">cached</span>
-                </div>
-                <input v-else :class="error ? 'error' : ''" type="submit" value="Connexion">
-            </form>
-            <span class="error-text" v-if="errorText" v-html="errorText"></span>
-        </div>
-    </main>
+    <parallax-container class="parallax-overflow-container">
+        <header class="login-page_header">
+            <parallax-element :parallaxStrength="-3" :type="'depth'" class="login-page_header-icon">
+                <img src="assets/images/logo.png" alt="">
+                <p>Ride</p>
+            </parallax-element>
+        </header>
+        <main>
+                <parallax-element :parallaxStrength="2.5" :type="'translation'"  class="login-page_form-container">
+                    <h1>Connexion</h1>
+                    <p>Connectez-vous à l'aide des identifiants reçus dans votre mail d'activation.</p>
+                    <form @submit.prevent="handleConnect">
+                        <div class="input-group">                
+                            <label for="username">Identifiant</label>
+                            <input type="email" name="username" v-model="userInfo.username">
+                        </div>
+                        <div class="input-group">                
+                            <label for="password">Mot de passe</label>
+                            <input type="password" name="password" v-model="userInfo.password">
+                        </div>
+                        <parallax-element :parallaxStrength="10" :type="'depth'">
+                            <div v-if="loading" class="loading-container">
+                                <span  class="loading material-symbols-outlined">cached</span>
+                            </div>
+                            <input v-else :class="error ? 'error' : ''" type="submit" value="Connexion">
+                        </parallax-element>
+                    </form>
+                    <span class="error-text" v-if="errorText" v-html="errorText"></span>
+                </parallax-element>
+        </main>
+    </parallax-container>
 </template>
