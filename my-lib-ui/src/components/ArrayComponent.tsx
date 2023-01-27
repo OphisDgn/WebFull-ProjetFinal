@@ -3,9 +3,11 @@ import { IoIosCheckmark, IoMdPaw } from "react-icons/io";
 import ButtonComponent from "./ButtonComponent";
 
 type ArrayProps =  { 
-  items?: User[],
-  headers?: string[]
-  validateMethod?: any
+  usersItems?: User[],
+  headers?: string[],
+  validateMethod?: any,
+  typeList: string,
+  carsItems?: Cars[]
 };
 
 type User = {
@@ -18,8 +20,15 @@ type User = {
   isValided: boolean
 };
 
+type Cars = {
+  id: number,
+  name: string,
+  price: number,
+  image: string
+};
+
 const ArrayComponent: React.FC<ArrayProps> = (Props) => {
-  const { items, headers, validateMethod } = Props;
+  const { usersItems, headers, validateMethod, typeList, carsItems } = Props;
 
   return (
     <div>
@@ -32,7 +41,8 @@ const ArrayComponent: React.FC<ArrayProps> = (Props) => {
           </tr>
         </thead>
         <tbody>
-          {items != null && items.map(item => (
+
+          {typeList=="users" && usersItems != null && usersItems.map(item => (
             <tr key={item.id}>
               <td>{item.isValided ? (<span itemID="isCheck"><IoIosCheckmark/> Validé</span>) : (<span itemID="isNotCheck"><IoMdPaw/> En attente</span>)}</td>
               <td>{item.lastname} {item.firstname}</td>
@@ -50,6 +60,18 @@ const ArrayComponent: React.FC<ArrayProps> = (Props) => {
                   {!item.isValided && (
                   <ButtonComponent type={'submit'} label="Valider"/>
                   )}
+                </form>
+                </td>
+            </tr>
+          ))}
+          {typeList=="cars" && carsItems != null && carsItems.map(item => (
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.price}</td>
+              <td>
+                <form onSubmit={(e) => validateMethod(e)}>
+                  <input type="hidden" name="carsID" value={item.id} />
+                  <ButtonComponent type={'submit'} label="Supprimer"/>
                 </form>
                 </td>
             </tr>

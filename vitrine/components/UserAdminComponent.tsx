@@ -54,7 +54,7 @@ const UserAdminComponent: React.FC = () => {
   return (
     <section className="panel-admin-container">
       {loading==0 && (
-        <ArrayComponent items={item} headers={hd} validateMethod={onSubmitRegister} />
+        <ArrayComponent usersItems={item} headers={hd} validateMethod={onSubmitRegister} typeList={"users"} />
       )}
       {loading==1 && (
         <div className="form_register_figma_centered">
