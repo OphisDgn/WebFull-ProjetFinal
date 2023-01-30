@@ -17,13 +17,19 @@
   color: rgba(0, 0, 0, 0.5019607843);
   font-family: "Roboto";
 }
-.my-lib-ui-form-field .my-lib-ui-input {
+.my-lib-ui-form-field .my-lib-ui-input, .my-lib-ui-form-field .my-lib-ui-textarea {
   font-size: 16px;
   border: none;
   outline: none;
   color: #C00000;
   background: #f9f9f9;
   padding: 4px 0;
+}
+.my-lib-ui-form-field .my-lib-ui-textarea {
+  resize: vertical;
+}
+.my-lib-ui-form-field:has(.my-lib-ui-textarea) {
+  width: 100%;
 }
 .my-lib-ui-form-field .my-lib-ui-select {
   border: none;
@@ -33,10 +39,10 @@
   font-family: "Roboto";
   font-size: 16px;
 }
-.my-lib-ui-form-field:has(.my-lib-ui-input:active), .my-lib-ui-form-field:has(.my-lib-ui-input:focus) {
+.my-lib-ui-form-field:has(.my-lib-ui-input:active), .my-lib-ui-form-field:has(.my-lib-ui-input:focus), .my-lib-ui-form-field:has(.my-lib-ui-textarea:active), .my-lib-ui-form-field:has(.my-lib-ui-textarea:focus) {
   border-bottom: 1px solid black;
 }
-.my-lib-ui-form-field:has(.my-lib-ui-input:active) .my-lib-ui-label, .my-lib-ui-form-field:has(.my-lib-ui-input:focus) .my-lib-ui-label {
+.my-lib-ui-form-field:has(.my-lib-ui-input:active) .my-lib-ui-label, .my-lib-ui-form-field:has(.my-lib-ui-input:focus) .my-lib-ui-label, .my-lib-ui-form-field:has(.my-lib-ui-textarea:active) .my-lib-ui-label, .my-lib-ui-form-field:has(.my-lib-ui-textarea:focus) .my-lib-ui-label {
   font-weight: bold;
   color: black;
 }
@@ -112,6 +118,9 @@
   .my-lib-ui-form-field-button .button_submit {
     width: 100%;
   }
+}
+.my-lib-ui-form-field-button .button_submit.button_linkto {
+  padding: 5px 20px;
 }
 @media screen and (max-width: 768px) {
   .my-lib-ui-form-field-button {
@@ -193,6 +202,27 @@
   text-align: center;
   font-family: "Abel Pro";
   font-size: 16px;
+}
+
+.array-component {
+  width: 100%;
+}
+.array-component thead {
+  text-align: left;
+}
+.array-component thead th {
+  border-bottom: 1px solid #e5e5e5;
+}
+.array-component tbody > tr > td span#isCheck {
+  font-size: 30px;
+  vertical-align: middle;
+}
+.array-component tbody > tr > td span#isNotCheck {
+  font-size: 22px;
+  vertical-align: middle;
+}
+.array-component .container-buttons-actions {
+  text-align: right;
 }
 
 /*# sourceMappingURL=index.css.map */

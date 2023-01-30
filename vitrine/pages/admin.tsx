@@ -14,7 +14,7 @@ const Admin: NextPage = () => {
   return (
     <div className="container-global-login">
       <HeadComponent />
-      <HeaderComponent url="/" btnText="Accueil"/>
+      <HeaderComponent url="/" btnText="Retour accueil"/>
       
       <main className="main-admin-container">
         <h3>GESTION BACKOFFICE</h3>

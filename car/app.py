@@ -23,7 +23,9 @@ def create():
     name = request.json['name']
     price = request.json['price']
     image = request.json['image']
-    car = CarModel(name=name, price=price, image=image)
+    description = request.json['description']
+    model = request.json['model']
+    car = CarModel(name=name, price=price, image=image, description=description, model=model)
     db.session.add(car)
     db.session.commit()
     return jsonify(car.getCar())
@@ -34,8 +36,10 @@ def update(id):
     name = request.json['name']
     price = request.json['price']
     image = request.json['image']
+    description = request.json['description']
+    model = request.json['model']
     db.session.query(CarModel).filter(CarModel.id == id).update(
-    {'name':name, 'price':price, 'image':image}, synchronize_session="fetch")
+    {'name':name, 'price':price, 'image':image, 'description': description, 'model': model}, synchronize_session="fetch")
     db.session.commit()
     car = CarModel.query.filter_by(id=id).first()
     return jsonify(car.getCar())

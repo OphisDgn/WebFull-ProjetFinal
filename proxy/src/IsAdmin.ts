@@ -18,11 +18,11 @@ export default function IsAdmin(req: Request, res: Response, next: Function) {
         }
 
         if (yes) next();
-        else return res.status(400).json({ message: 'User isn\'t admin.' });
+        else res.status(400).json({ message: 'User isn\'t admin.' });
     })
     .catch((onrejected) => {
         console.log(onrejected.response.data)
-        return res.status(400).json({ message: 'User isn\'t admin.' });
+        res.status(400).json({ message: 'User isn\'t admin.' });
     });
     
 }

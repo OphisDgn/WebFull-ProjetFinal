@@ -2,12 +2,13 @@ import React from "react";
 import { IoIosCheckmark, IoMdPaw } from "react-icons/io";
 import ButtonComponent from "./ButtonComponent";
 
-type ArrayProps =  { 
-  usersItems?: User[],
-  headers?: string[],
-  validateMethod?: any,
-  typeList: string,
-  carsItems?: Cars[]
+type Cars = {
+  id: number,
+  name: string,
+  price: number,
+  image: string,
+  description: string,
+  model: string,
 };
 
 type User = {
@@ -20,15 +21,18 @@ type User = {
   isValided: boolean
 };
 
-type Cars = {
-  id: number,
-  name: string,
-  price: number,
-  image: string
+type ArrayProps =  { 
+  usersItems?: User[],
+  headers?: string[],
+  validateMethod?: any,
+  typeList: string,
+  carsItems?: Cars[],
+  onDeleted?: any
 };
 
+
 const ArrayComponent: React.FC<ArrayProps> = (Props) => {
-  const { usersItems, headers, validateMethod, typeList, carsItems } = Props;
+  const { usersItems, headers, validateMethod, typeList, carsItems, onDeleted } = Props;
 
   return (
     <div>
@@ -36,7 +40,7 @@ const ArrayComponent: React.FC<ArrayProps> = (Props) => {
         <thead>
           <tr>
             {headers != null && headers.map((header, index) => (
-              <th key={index}>{header}</th>
+              <th key={index} className={header == "Action" && typeList=="cars" ? "container-buttons-actions" : ""}>{header}</th>
             ))}
           </tr>
         </thead>
@@ -67,13 +71,14 @@ const ArrayComponent: React.FC<ArrayProps> = (Props) => {
           {typeList=="cars" && carsItems != null && carsItems.map(item => (
             <tr key={item.id}>
               <td>{item.name}</td>
-              <td>{item.price}</td>
-              <td>
-                <form onSubmit={(e) => validateMethod(e)}>
-                  <input type="hidden" name="carsID" value={item.id} />
-                  <ButtonComponent type={'submit'} label="Supprimer"/>
-                </form>
-                </td>
+              <td>{item.model}</td>
+              <td>{item.price} €</td>
+              <td>{item.description}</td>
+              <td className="container-buttons-actions">
+                <div className="my-lib-ui-form-field-button">
+                  <button type="button" className="button_submit" onClick={() => onDeleted(item.id)}>Supprimer</button>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>

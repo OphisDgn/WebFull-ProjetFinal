@@ -23,7 +23,7 @@
     font-family: 'Roboto';
   }
 
-  .my-lib-ui-input {
+  .my-lib-ui-input, .my-lib-ui-textarea {
     font-size: 16px;
     border: none;
     outline: none;
@@ -32,6 +32,10 @@
     padding: 4px 0;
   }
   
+  .my-lib-ui-textarea {
+    resize:vertical;
+  }
+
   .my-lib-ui-select {
     border: none;
     outline: none;
@@ -41,7 +45,8 @@
     font-size: 16px;
   }
 
-  &:has(.my-lib-ui-input:active), &:has(.my-lib-ui-input:focus) {
+  &:has(.my-lib-ui-input:active), &:has(.my-lib-ui-input:focus), 
+  &:has(.my-lib-ui-textarea:active), &:has(.my-lib-ui-textarea:focus) {
     border-bottom: 1px solid black;
 
     .my-lib-ui-label {
@@ -88,7 +93,7 @@
       color: black;
     }
   }
-
+  
 }
 
 
