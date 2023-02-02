@@ -5,23 +5,21 @@ import axios from 'axios';
 
 type FormComponentProps = {
   formType: "register" | "login";
-  loading: 0 | 1;
-  showError: 0 | 1;
-  errorMsg: string;
+  loading: boolean;
 } 
 
 const FormComponent: React.FC<FormComponentProps> = (props) => {
   const { formType } = props;
   const [errorMsg, setErrorMsg] = useState<string>("");
-  const [register, setRegister] = useState<number>(0);
-  const [loading, setLoading] = useState<number>(0);
-  const [showError, setShowError] = useState<number>(0);
+  const [register, setRegister] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showError, setShowError] = useState<boolean>(false);
 
   const errorHandler = (error: any) => {
-    setShowError(1)
+    setShowError(true)
     setErrorMsg(error)
     setTimeout(() => {
-      setShowError(0)
+      setShowError(false)
     }, 5000);
   }
 
@@ -43,21 +41,21 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
       }
       console.log(userData)
       if(userData) {
-        setLoading(1)
+        setLoading(true)
         axios.post('http://localhost:8000/api/inscription', userData)
         .then((onfulfilled) => {
           console.log(onfulfilled.data);
-          setRegister(1);
+          setRegister(true);
         })
         .catch((onrejected) => {
-          setRegister(0);
+          setRegister(false);
           console.log(onrejected.response.data);
         });
         
       }
     } else if (formType == "login") {
       let token = ''
-      setLoading(1)
+      setLoading(true)
       let formInputs = document.querySelectorAll('input');
       const userData: Object = {
         username: formInputs[0].value,
@@ -67,8 +65,8 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
       .then((onfulfilled) => {
         console.log(onfulfilled.data.token);
         if(errorCodes.includes(onfulfilled.data.code)) {
-          setLoading(0)
-          errorHandler(onfulfilled.data.message)
+          setLoading(false)
+          errorHandler(onfulfilled.data.data)
         } else {
           token = onfulfilled.data.token;
           axios.get('http://localhost:8000/api/.user/user', {
@@ -79,10 +77,10 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
           .then((onfulfilled) => {
             console.log(onfulfilled.data);
             if(errorCodes.includes(onfulfilled.data.code)) {
-              setLoading(0)
+              setLoading(false)
               errorHandler(onfulfilled.data.message)
             } else {
-              setLoading(0)
+              setLoading(false)
               if(onfulfilled.data.roles[0].includes("ROLE_ADMIN")) {
                 window.location.href = '/admin';
                 // STOCKER LE TOKEN DANS LE LOCALSTORE :
@@ -102,8 +100,9 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
         }
       })
       .catch((onrejected) => {
-        setLoading(0)
-        errorHandler(onrejected.response.message)
+        setLoading(false)
+        console.log(onrejected.response.data);
+        errorHandler(onrejected.response.data);
         console.log(onrejected.response.data);
       })
     }
@@ -111,7 +110,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
 
   return (
     <section className={formType == "register" ? "main_form main_register" : "main_form main_login"}>
-      {formType == "register" && register==0 && (
+      {formType == "register" && !register && (
         <div className="form_register">
           <form onSubmit={(e) => onSubmitRegister(e)}>
             <h1 className="form_title">Inscription</h1>
@@ -149,12 +148,12 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
               </div>
             </div>
             <CheckboxComponent/>
-            {loading==0 && (
+            {!loading && (
             <div className="form_register_figma_row-button">
               <ButtonComponent type={'submit'} label="Demander mon inscription"/>
             </div>
             )}
-            {loading==1 && (
+            {loading && (
             <div className="form_register_figma_centered">
               <div className="loading-icon"></div>
             </div>
@@ -163,7 +162,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
         </div>
         )
       }
-      {formType == "register" && register==1 && (
+      {formType == "register" && register && (
         <MessageComponent />
       )}
       {formType == "login" && (
@@ -173,13 +172,13 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
               <div className="form_login_figma_row">
                 <InputTextComponent label="Identifiant" type="text" name="username"/>
                 <InputTextComponent label="Mot de passe" type="password" name="password"/>
-                {showError==1 && (
+                {showError && (
                   <p className="form_login_error">{ errorMsg }</p>
                 )}
-                {loading==0 && (
+                {!loading && (
                   <ButtonComponent type={'submit'} label="Connexion"/>
                 )}
-                {loading==1 && (
+                {loading && (
                 <div className="form_register_figma_centered">
                   <div className="loading-icon"></div>
                 </div>

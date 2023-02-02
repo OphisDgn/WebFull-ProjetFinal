@@ -2,4 +2,4 @@
 flask                 
 flask-sqlalchemy
 mysqlclient
-Flask-Migrate
+flask-cors

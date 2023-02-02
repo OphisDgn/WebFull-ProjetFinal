@@ -57,6 +57,7 @@ const hd = ["Statut", "NOM Prenom", "Coordonnées", "Nationalité", "Action"];
 
 
 ArrayComponentView.args = {
-    items: it,
-    headers: hd
+    usersItems: it,
+    headers: hd,
+    typeList: "users"
 }
