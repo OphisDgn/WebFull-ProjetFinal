@@ -33,3 +33,19 @@ body {
     background: $bgLight;
     min-height: 100vh;
 }
+
+.legals {
+  margin: 100px auto;
+  width: 80%;
+  h1 {
+    font: $fontL;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font: $fontL;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}

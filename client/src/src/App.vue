@@ -8,9 +8,9 @@
         </span> 
       </div>
     <nav class="navbar" v-if="isLoggedIn">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <span @click="disconnect" class="disconnect" >Disconnect</span>
+      <router-link to="/">Accueil</router-link>
+      <router-link to="/legals">Mention Légales</router-link>
+      <span @click="disconnect" class="disconnect" >Deconnexion</span>
     </nav>
   </div>
   <router-view />
@@ -26,7 +26,7 @@ export default {
 
     const router = useRouter()
     const route = useRoute()
-    const isLoggedIn = ref(true)
+    const isLoggedIn = ref(false)
 
     provide('isLoggedIn', isLoggedIn)
 
