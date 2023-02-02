@@ -9,7 +9,7 @@ const FooterComponent: React.FC = () => {
                     <span>Contact</span>
                 </li>
                 <li>
-                    <span>Conditions générales de vente</span>
+                    <a href="/legal">Mention légales</a>
                 </li>
             </ul>
             <div className="footer-copyright">

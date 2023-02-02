@@ -416,3 +416,7 @@ main {
   border: none;
   cursor: pointer;
 }
+
+.legal-mention-container {
+  padding: 10px 50px;
+}
