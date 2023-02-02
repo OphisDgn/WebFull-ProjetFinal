@@ -1,0 +1,51 @@
+* {
+//cursor: none;
+    font: $fontR;
+    margin: 0;
+    // -webkit-font-smoothing: subpixel-antialiased;
+    // backface-visibility: hidden;
+    // transform: translateZ(0);
+    font-smooth: always;
+    -webkit-font-smoothing : antialiased;
+
+}
+
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: $bgLight;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 10px;
+    border: 3px solid $bgLight;
+  }
+
+body { 
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background: $bgLight;
+    min-height: 100vh;
+}
+
+.legals {
+  margin: 100px auto;
+  width: 80%;
+  h1 {
+    font: $fontL;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font: $fontL;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}

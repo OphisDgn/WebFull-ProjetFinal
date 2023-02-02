@@ -1,0 +1,10 @@
+// base style
+@import "partials/vars";
+@import "partials/gen";
+@import "partials/animations";
+@import "partials/navbar";
+@import "partials/hamburgers";
+
+// Pages style
+@import "pages/carList";
+@import "pages/login";
