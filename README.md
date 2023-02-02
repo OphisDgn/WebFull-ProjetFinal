@@ -5,11 +5,6 @@
 1. Fichier *security.yaml*
     - la route **" /api/inscription/valide-user/{id} "** qui ne voulait pas avoir de restriction d'accès, la route est donc en accès public
 
-## Storybook
-
-1. Le tableau ArrayComponent
-![Storybook arrayComponent](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/storybook.png)
-
 ## Visuel du site
 
 - Accueil
@@ -22,8 +17,32 @@
 ![Panel admin](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-admin.png)
 - Panel administrateur après validation d'un futurUser
 ![Panel admin après validation d'un user](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-apres-validation.png)
+- Panel administration des voitures
+![Panel administration des voitures](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-admin-cars.png)
+- Panel administration création d'une voiture
+![Panel administration création voiture](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/vue-admin-create-car.png)
 
 
+## Visuel application Electron
+
+- Loader au démarrage
+![Loader au démarrage](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/electron-loader.png)
+- Connexion
+![Connexion](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/electron-connexion.png)
+- Liste des voitures
+![Liste des voitures](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/electron-list.png)
+- Menu (ouvrable par le bouton à gauche)
+![Menu](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/electron-menu.png)
+- Détail d'une voiture
+![Détail d'une voiture](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/electron-detail-car.png)
+
+
+<!-- ## Storybook
+
+1. Le tableau ArrayComponent
+![Storybook arrayComponent](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/storybook.png) -->
+
+<!-- 
 ## Les routes Insomnia
 
 1. Les variables utilisées :
@@ -63,4 +82,5 @@
 18. POST - BO - Create futur user :
 ![BO - Create futur user](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-create-futureuser.png)
 19. DELETE - BO - Delete futur user :
-![BO - delete futur user](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-delete-futureuser8.png)
+![BO - delete futur user](https://github.com/OphisDgn/WebFull-ProjetFinal/blob/main/images/insomnia-delete-futureuser8.png) 
+-->
